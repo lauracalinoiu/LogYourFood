@@ -10,26 +10,56 @@ import UIKit
 
 class MealSelectorTableViewController: UITableViewController {
   
-  var checkedIndexPath: NSIndexPath!
+  var checkedIndex: Int? {
+    get {
+      guard let index = NSUserDefaults.standardUserDefaults().objectForKey("checkedIndex") else{
+        return nil
+      }
+      return Int(index as! NSNumber)
+    }
+    set {
+      NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "checkedIndex")
+      NSUserDefaults.standardUserDefaults().synchronize()
+    }
+  }
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  var checkedIndexPath: NSIndexPath? {
+    get{
+      if let checkedIndexUnwrapped = checkedIndex{
+        return NSIndexPath(forRow: checkedIndexUnwrapped, inSection: 0)
+      }
+      return nil
+    }
+    set(v){
+      checkedIndex = v?.row
+    }
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    showPreviousSelection()
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    if checkedIndexPath != nil && indexPath == checkedIndexPath {
-      tableView.cellForRowAtIndexPath(checkedIndexPath)?.accessoryType = .None
+    if let checkedIndexPathUnwrapped = checkedIndexPath {
+      tableView.cellForRowAtIndexPath(checkedIndexPathUnwrapped)?.accessoryType = .None
     }
     
     let cell = tableView.cellForRowAtIndexPath(indexPath)
     cell?.accessoryType = .Checkmark
     checkedIndexPath = indexPath
     
+    
     self.performSelector("dismissController", withObject: nil, afterDelay: 0.5)
   }
-
+  
   func dismissController(){
-      navigationController?.popViewControllerAnimated(true)
+    navigationController?.popViewControllerAnimated(true)
   }
   
+  func showPreviousSelection(){
+    if let checkedIndexPathUnwrapped = checkedIndexPath{
+      tableView.cellForRowAtIndexPath(checkedIndexPathUnwrapped)?.accessoryType = .Checkmark
+    }
+  }
 }
