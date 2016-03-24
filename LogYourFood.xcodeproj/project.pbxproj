@@ -8,22 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		D348DEAF1C97E98A000D632C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348DEAE1C97E98A000D632C /* AppDelegate.swift */; };
-		D348DEB11C97E98A000D632C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348DEB01C97E98A000D632C /* ViewController.swift */; };
 		D348DEB41C97E98A000D632C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D348DEB21C97E98A000D632C /* Main.storyboard */; };
 		D348DEB61C97E98A000D632C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D348DEB51C97E98A000D632C /* Assets.xcassets */; };
 		D348DEB91C97E98A000D632C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D348DEB71C97E98A000D632C /* LaunchScreen.storyboard */; };
-		D348DEC11C9813D1000D632C /* AddNewMealController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348DEC01C9813D1000D632C /* AddNewMealController.swift */; };
+		D348DEC51CA1433D000D632C /* LogFoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348DEC41CA1433D000D632C /* LogFoodController.swift */; };
+		D38E87AD1CA375BB0048A83E /* MealSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D348DEAB1C97E98A000D632C /* LogYourFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogYourFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D348DEAE1C97E98A000D632C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D348DEB01C97E98A000D632C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D348DEB31C97E98A000D632C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D348DEB51C97E98A000D632C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D348DEB81C97E98A000D632C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D348DEBA1C97E98A000D632C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D348DEC01C9813D1000D632C /* AddNewMealController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewMealController.swift; sourceTree = "<group>"; };
+		D348DEC41CA1433D000D632C /* LogFoodController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFoodController.swift; sourceTree = "<group>"; };
+		D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealSelectorTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,8 +57,8 @@
 			isa = PBXGroup;
 			children = (
 				D348DEAE1C97E98A000D632C /* AppDelegate.swift */,
-				D348DEB01C97E98A000D632C /* ViewController.swift */,
-				D348DEC01C9813D1000D632C /* AddNewMealController.swift */,
+				D348DEC41CA1433D000D632C /* LogFoodController.swift */,
+				D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */,
 				D348DEB21C97E98A000D632C /* Main.storyboard */,
 				D348DEB51C97E98A000D632C /* Assets.xcassets */,
 				D348DEB71C97E98A000D632C /* LaunchScreen.storyboard */,
@@ -139,9 +139,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D348DEC11C9813D1000D632C /* AddNewMealController.swift in Sources */,
-				D348DEB11C97E98A000D632C /* ViewController.swift in Sources */,
+				D348DEC51CA1433D000D632C /* LogFoodController.swift in Sources */,
 				D348DEAF1C97E98A000D632C /* AppDelegate.swift in Sources */,
+				D38E87AD1CA375BB0048A83E /* MealSelectorTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +289,7 @@
 				D348DEBF1C97E98A000D632C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
