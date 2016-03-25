@@ -35,6 +35,8 @@ class MealSelectorTableViewController: UITableViewController {
     }
   }
   
+  var delegate: MealDelegate?
+  
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     showPreviousSelection()
@@ -48,8 +50,10 @@ class MealSelectorTableViewController: UITableViewController {
     let cell = tableView.cellForRowAtIndexPath(indexPath)
     cell?.accessoryType = .Checkmark
     checkedIndexPath = indexPath
-    
-    
+    if let labelFromCell = cell?.textLabel{
+      delegate?.update(labelFromCell.text!)
+    }
+  
     self.performSelector("dismissController", withObject: nil, afterDelay: 0.5)
   }
   
@@ -62,4 +66,8 @@ class MealSelectorTableViewController: UITableViewController {
       tableView.cellForRowAtIndexPath(checkedIndexPathUnwrapped)?.accessoryType = .Checkmark
     }
   }
+}
+
+protocol MealDelegate{
+  func update(data: String)
 }

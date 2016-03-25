@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D32EDA0B1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32EDA0A1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift */; };
 		D348DEAF1C97E98A000D632C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348DEAE1C97E98A000D632C /* AppDelegate.swift */; };
 		D348DEB41C97E98A000D632C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D348DEB21C97E98A000D632C /* Main.storyboard */; };
 		D348DEB61C97E98A000D632C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D348DEB51C97E98A000D632C /* Assets.xcassets */; };
 		D348DEB91C97E98A000D632C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D348DEB71C97E98A000D632C /* LaunchScreen.storyboard */; };
 		D348DEC51CA1433D000D632C /* LogFoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348DEC41CA1433D000D632C /* LogFoodController.swift */; };
 		D38E87AD1CA375BB0048A83E /* MealSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */; };
+		D38E87AF1CA3AB480048A83E /* NewMealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E87AE1CA3AB480048A83E /* NewMealTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D32EDA0A1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApetitReactionsTableViewController.swift; sourceTree = "<group>"; };
 		D348DEAB1C97E98A000D632C /* LogYourFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogYourFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D348DEAE1C97E98A000D632C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D348DEB31C97E98A000D632C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -24,6 +27,7 @@
 		D348DEBA1C97E98A000D632C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D348DEC41CA1433D000D632C /* LogFoodController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFoodController.swift; sourceTree = "<group>"; };
 		D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealSelectorTableViewController.swift; sourceTree = "<group>"; };
+		D38E87AE1CA3AB480048A83E /* NewMealTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMealTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +62,9 @@
 			children = (
 				D348DEAE1C97E98A000D632C /* AppDelegate.swift */,
 				D348DEC41CA1433D000D632C /* LogFoodController.swift */,
+				D38E87AE1CA3AB480048A83E /* NewMealTableViewController.swift */,
 				D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */,
+				D32EDA0A1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift */,
 				D348DEB21C97E98A000D632C /* Main.storyboard */,
 				D348DEB51C97E98A000D632C /* Assets.xcassets */,
 				D348DEB71C97E98A000D632C /* LaunchScreen.storyboard */,
@@ -140,7 +146,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D348DEC51CA1433D000D632C /* LogFoodController.swift in Sources */,
+				D32EDA0B1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift in Sources */,
 				D348DEAF1C97E98A000D632C /* AppDelegate.swift in Sources */,
+				D38E87AF1CA3AB480048A83E /* NewMealTableViewController.swift in Sources */,
 				D38E87AD1CA375BB0048A83E /* MealSelectorTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
