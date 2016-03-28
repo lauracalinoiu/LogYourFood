@@ -43,18 +43,29 @@ class MealSelectorTableViewController: UITableViewController {
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    uncheckPreviousOption()
+    checkNewOption(indexPath)
+    notifyDelegateAboutChange(indexPath)
+    self.performSelector("dismissController", withObject: nil, afterDelay: 0.5)
+  }
+  
+  func uncheckPreviousOption(){
     if let checkedIndexPathUnwrapped = checkedIndexPath {
       tableView.cellForRowAtIndexPath(checkedIndexPathUnwrapped)?.accessoryType = .None
     }
-    
+  }
+  
+  func checkNewOption(indexPath: NSIndexPath){
     let cell = tableView.cellForRowAtIndexPath(indexPath)
     cell?.accessoryType = .Checkmark
     checkedIndexPath = indexPath
+  }
+  
+  func notifyDelegateAboutChange(indexPath: NSIndexPath){
+    let cell = tableView.cellForRowAtIndexPath(indexPath)
     if let labelFromCell = cell?.textLabel{
       delegate?.update(labelFromCell.text!)
     }
-  
-    self.performSelector("dismissController", withObject: nil, afterDelay: 0.5)
   }
   
   func dismissController(){

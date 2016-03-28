@@ -15,6 +15,7 @@
 		D348DEC51CA1433D000D632C /* LogFoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348DEC41CA1433D000D632C /* LogFoodController.swift */; };
 		D38E87AD1CA375BB0048A83E /* MealSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */; };
 		D38E87AF1CA3AB480048A83E /* NewMealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E87AE1CA3AB480048A83E /* NewMealTableViewController.swift */; };
+		D3ACF3991CA91762003533D8 /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ACF3981CA91762003533D8 /* Reaction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D348DEC41CA1433D000D632C /* LogFoodController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFoodController.swift; sourceTree = "<group>"; };
 		D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealSelectorTableViewController.swift; sourceTree = "<group>"; };
 		D38E87AE1CA3AB480048A83E /* NewMealTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMealTableViewController.swift; sourceTree = "<group>"; };
+		D3ACF3981CA91762003533D8 /* Reaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		D348DEAD1C97E98A000D632C /* LogYourFood */ = {
 			isa = PBXGroup;
 			children = (
+				D3ACF3971CA9172A003533D8 /* Model */,
 				D348DEAE1C97E98A000D632C /* AppDelegate.swift */,
 				D348DEC41CA1433D000D632C /* LogFoodController.swift */,
 				D38E87AE1CA3AB480048A83E /* NewMealTableViewController.swift */,
@@ -71,6 +74,14 @@
 				D348DEBA1C97E98A000D632C /* Info.plist */,
 			);
 			path = LogYourFood;
+			sourceTree = "<group>";
+		};
+		D3ACF3971CA9172A003533D8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D3ACF3981CA91762003533D8 /* Reaction.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +160,7 @@
 				D32EDA0B1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift in Sources */,
 				D348DEAF1C97E98A000D632C /* AppDelegate.swift in Sources */,
 				D38E87AF1CA3AB480048A83E /* NewMealTableViewController.swift in Sources */,
+				D3ACF3991CA91762003533D8 /* Reaction.swift in Sources */,
 				D38E87AD1CA375BB0048A83E /* MealSelectorTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

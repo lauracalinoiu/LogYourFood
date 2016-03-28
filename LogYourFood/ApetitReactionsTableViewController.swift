@@ -9,87 +9,69 @@
 import UIKit
 
 class ApetitReactionsTableViewController: UITableViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+  
+  var apetitDelegate: ApetitDelegate?
+  var options: [[Reaction]] = [[ Reaction(category: .Apetit,text: "You feel sated, satisfied", type: .Positive, selected: false),
+    Reaction(category: .Apetit,text: "You don't want desert", type: .Positive, selected: false),
+    Reaction(category: .Apetit,text: "You don't want more food", type: .Positive, selected: false),
+    Reaction(category: .Apetit,text: "You don't feel hungry", type: .Positive, selected: false),
+    Reaction(category: .Apetit,text: "You don't need a snack before next meal", type: .Positive, selected: false)],
+    
+    [Reaction(category: .Apetit,text: "You feel full, but still hungry", type: .Negative, selected: false),
+      Reaction(category: .Apetit,text: "You want desert", type: .Negative, selected: false),
+      Reaction(category: .Apetit,text: "Unsatisfied, something was missing", type: .Negative, selected: false),
+      Reaction(category: .Apetit,text: "Already hungry", type: .Negative, selected: false),
+      Reaction(category: .Apetit,text: "You want a snack", type: .Negative, selected: false)]]
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "pressDone:")
+  }
+  
+  func pressDone(doneButton: UIBarButtonItem){
+    checkIfSomethingChosen()
+    navigationController?.popViewControllerAnimated(true)
+  }
+  
+  override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    return options.count
+  }
+  
+  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return options[section].count
+  }
+  
+  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCellWithIdentifier("apetitCell", forIndexPath: indexPath)
+    cell.textLabel!.text = options[indexPath.section][indexPath.row].text
+    cell.accessoryType = options[indexPath.section][indexPath.row].selected ? .Checkmark : .None
+    return cell
+  }
+  
+  override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    if section == 0{
+      return "Positve"
+    } else {
+      return "Negative"
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+  }
+  
+  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    options[indexPath.section][indexPath.row].toggleSelection()
+    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+  }
+  
+  func checkIfSomethingChosen(){
+    for type in options{
+      for option in type{
+        if option.selected {
+          apetitDelegate!.updateSelected("**")
+        }
+      }
     }
+  }
+}
 
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+protocol ApetitDelegate{
+  func updateSelected(data: String)
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewMealTableViewController: UITableViewController, MealDelegate{
+class NewMealTableViewController: UITableViewController, MealDelegate, ApetitDelegate{
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
@@ -18,9 +18,17 @@ class NewMealTableViewController: UITableViewController, MealDelegate{
     if segue.identifier == "ChooseMeal" {
       (segue.destinationViewController as! MealSelectorTableViewController).delegate = self
     }
+    
+    if segue.identifier == "ApetitReaction" {
+      (segue.destinationViewController as! ApetitReactionsTableViewController).apetitDelegate = self
+    }
   }
   
   func update(data: String) {
     tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.detailTextLabel!.text = data
+  }
+  
+  func updateSelected(data: String) {
+    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 2))?.detailTextLabel!.text = data
   }
 }
