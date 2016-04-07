@@ -6,29 +6,49 @@
 //  Copyright © 2016 3smurfs. All rights reserved.
 //
 
-import Foundation
+import RealmSwift
 
-enum Category{
+enum Category: String{
   case Apetit
   case Energy
   case Emotion
 }
 
-enum Type{
+enum Type: String{
   case Positive
   case Negative
 }
 
-class Reaction{
-  var category: Category
-  var text: String?
-  var type: Type
-  var selected: Bool
+class Reaction: Object{
   
-  init(category: Category, text: String, type: Type, selected: Bool){
-    self.category = category
+  dynamic var category = Category.Apetit.rawValue
+  dynamic var text: String?
+  dynamic var selected: Bool = false
+  dynamic var type = Type.Positive.rawValue
+  
+  var categoryEnum: Category{
+    get{
+      return Category(rawValue: category)!
+    }
+    set{
+      category = newValue.rawValue
+    }
+  }
+  
+  var typeEnum: Type{
+    get{
+      return Type(rawValue: type)!
+    }
+    set{
+      type = newValue.rawValue
+    }
+  }
+  
+  convenience init(category: Category, text: String, type: Type, selected: Bool){
+    self.init()
+    self.categoryEnum = category
     self.text = text
-    self.type = type
+    self.typeEnum = type
     self.selected = selected
   }
   
