@@ -46,7 +46,7 @@ class MealSelectorTableViewController: UITableViewController {
     uncheckPreviousOption()
     checkNewOption(indexPath)
     notifyDelegateAboutChange(indexPath)
-    self.performSelector("dismissController", withObject: nil, afterDelay: 0.5)
+    self.performSelector(#selector(MealSelectorTableViewController.dismissController), withObject: nil, afterDelay: 0.5)
   }
   
   func uncheckPreviousOption(){
@@ -64,7 +64,7 @@ class MealSelectorTableViewController: UITableViewController {
   func notifyDelegateAboutChange(indexPath: NSIndexPath){
     let cell = tableView.cellForRowAtIndexPath(indexPath)
     if let labelFromCell = cell?.textLabel{
-      delegate?.update(labelFromCell.text!)
+      delegate?.updateTypeOfMealWith(labelFromCell.text!)
     }
   }
   
@@ -80,5 +80,5 @@ class MealSelectorTableViewController: UITableViewController {
 }
 
 protocol MealDelegate{
-  func update(data: String)
+  func updateTypeOfMealWith(data: String)
 }

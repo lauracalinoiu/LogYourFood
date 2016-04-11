@@ -34,5 +34,5 @@ class Meal : Object{
   }
   
   dynamic var foodItems: String = ""
-  var reactions = Results<Reaction>?()
+  var reactions = List<Reaction>()
 }

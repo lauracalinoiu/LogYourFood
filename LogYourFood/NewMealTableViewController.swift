@@ -23,7 +23,7 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveMeal:")
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(NewMealTableViewController.saveMeal(_:)))
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -44,26 +44,12 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
     }
   }
   
-  func saveMeal(saveButton: UIBarButtonItem){
-    let meal = Meal()
-    meal.date = date
-    if let dishType = typeOfMeal{
-      meal.dishTypeEnum = dishType
-    }
-    meal.foodItems = foodItems.text
-    meal.reactions = realm.objects(Reaction)
-    
-    try! realm.write{
-      realm.add(meal)
-    }
-  }
-  
-  func update(data: String) {
+  func updateTypeOfMealWith(data: String) {
     tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.detailTextLabel!.text = data
     typeOfMeal = DishType(rawValue: data)
   }
   
-  func updateSelected(positivesMinusNegatives: Int, row: Int) {
+  func updateSelectedReaction(positivesMinusNegatives: Int, row: Int) {
     tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 2))?.detailTextLabel!.text = getEmonji(positivesMinusNegatives)
   }
   
@@ -74,5 +60,31 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
     default: return "😐"
     }
   }
+  
+  func saveMeal(saveButton: UIBarButtonItem){
+    commitMealToRealm(newMealFromUserEnteredData())
+  }
 }
 
+extension NewMealTableViewController{
+  func newMealFromUserEnteredData() -> Meal{
+    let meal = Meal()
+    meal.date = date
+    if let dishType = typeOfMeal{
+      meal.dishTypeEnum = dishType
+    }
+    meal.foodItems = foodItems.text
+    meal.reactions = realm.objects(Reaction).reduce(List<Reaction>()){  (list, element) -> List<Reaction> in
+      list.append(element)
+      return list
+    }
+    
+    return meal
+  }
+  
+  func commitMealToRealm(meal: Meal){
+    realm.beginWrite()
+    realm.add(meal)
+    try! realm.commitWrite()
+  }
+}

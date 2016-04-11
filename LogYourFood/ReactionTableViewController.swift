@@ -19,7 +19,7 @@ class ReactionTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: "pressDone:")
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(ReactionTableViewController.pressDone(_:)))
     getPreviousSelectionFromCategory()
     tableView.reloadData()
   }
@@ -33,32 +33,7 @@ class ReactionTableViewController: UITableViewController {
   func notifyAndUpdateParentWithSelection(){
     let positives = options.filter{$0.typeEnum == .Positive && $0.selected}.count
     let negatives = options.filter{$0.typeEnum == .Negative && $0.selected}.count
-    reactionDelegate!.updateSelected(positives - negatives, row: row)
-  }
-  
-  func saveOnRealm(){
-    deletePreviousSelectionFromSameCategory()
-    try! realm.write {
-      let selected = options.filter{$0.selected}
-      realm.add(selected)
-    }
-  }
-  
-  func getPreviousSelectionFromCategory(){
-    let selected = realm.objects(Reaction)
-    options = options.map(){ reaction in
-      if selected.filter({$0.text == reaction.text}).count > 0 {
-        reaction.selected = true
-      }
-      return reaction
-    }
-  }
-  
-  func deletePreviousSelectionFromSameCategory(){
-    let reactions = realm.objects(Reaction).filter("category = '\(options[0].category)'")
-    realm.beginWrite()
-    realm.delete(reactions)
-    try! realm.commitWrite()
+    reactionDelegate!.updateSelectedReaction(positives - negatives, row: row)
   }
 }
 
@@ -69,7 +44,6 @@ extension ReactionTableViewController{
       return [options.filter{ $0.typeEnum == .Positive } , options.filter{ $0.typeEnum == .Negative }]
     }
   }
-
   
   override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 2
@@ -96,6 +70,35 @@ extension ReactionTableViewController{
   }
 }
 
+extension ReactionTableViewController{
+  
+  func saveOnRealm(){
+    deletePreviousSelectionFromSameCategory()
+    
+    realm.beginWrite()
+    let selected = options.filter{$0.selected}
+    realm.add(selected)
+    try! realm.commitWrite()
+  }
+  
+  func getPreviousSelectionFromCategory(){
+    let selected = realm.objects(Reaction)
+    options = options.map(){ reaction in
+      if selected.filter({$0.text == reaction.text}).count > 0 {
+        reaction.selected = true
+      }
+      return reaction
+    }
+  }
+  
+  func deletePreviousSelectionFromSameCategory(){
+    let reactions = realm.objects(Reaction).filter("category = '\(options[0].category)'")
+    realm.beginWrite()
+    realm.delete(reactions)
+    try! realm.commitWrite()
+  }
+}
+
 protocol ReactionDelegate{
-  func updateSelected(positivesMinusNegatives: Int, row: Int)
+  func updateSelectedReaction(positivesMinusNegatives: Int, row: Int)
 }

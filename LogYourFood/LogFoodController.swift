@@ -36,7 +36,7 @@ class LogFoodController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    datePicker.addTarget(self, action: "datePickerChanged:", forControlEvents: .ValueChanged)
+    datePicker.addTarget(self, action: #selector(LogFoodController.datePickerChanged(_:)), forControlEvents: .ValueChanged)
     
     mealTable.dataSource = self
     datePicker.hidden = true
@@ -44,29 +44,21 @@ class LogFoodController: UIViewController{
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
-    getMeals()
-  }
-  
-  func getMeals(){
-    let predicate = NSPredicate(format: "date == %@", selectedDate)
-    meals = realm.objects(Meal).filter(predicate)
-    mealTable.reloadData()
+    getMeals{
+      self.mealTable.reloadData()
+    }
   }
   
   @IBAction func todayClicked(sender: UIButton) {
-    
-    if datePicker.hidden {
-      datePicker.fadeIn()
-    } else{
-      datePicker.fadeOut()
-    }
+    datePicker.hidden ? datePicker.fadeIn() : datePicker.fadeOut()
   }
   
   func datePickerChanged(datePicker:UIDatePicker) {
     let strDate = dateFormatter.stringFromDate(datePicker.date)
     todayButton.setTitle(strDate, forState: .Normal)
-    getMeals()
+    getMeals{
+      self.mealTable.reloadData()
+    }
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -76,20 +68,6 @@ class LogFoodController: UIViewController{
       (segue.destinationViewController as! NewMealTableViewController).date = selectedDate
     }
   }
-  
-  func clearNSUserDefaults(){
-    for key in Array(NSUserDefaults.standardUserDefaults().dictionaryRepresentation().keys) {
-      NSUserDefaults.standardUserDefaults().removeObjectForKey(key)
-    }
-  }
-  
-  func deleteSelectionFromRealm(){
-    let reactions = realm.objects(Reaction)
-    realm.beginWrite()
-    realm.delete(reactions)
-    try! realm.commitWrite()
-  }
-  
 }
 
 extension LogFoodController: UITableViewDataSource{
@@ -107,6 +85,35 @@ extension LogFoodController: UITableViewDataSource{
   
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 1
+  }
+}
+
+extension LogFoodController{
+  
+  func deleteSelectionFromRealm(){
+    let reactions = realm.objects(Reaction)
+    realm.beginWrite()
+    realm.delete(reactions)
+    try! realm.commitWrite()
+  }
+  
+  func clearNSUserDefaults(){
+    for key in Array(NSUserDefaults.standardUserDefaults().dictionaryRepresentation().keys) {
+      NSUserDefaults.standardUserDefaults().removeObjectForKey(key)
+    }
+  }
+  
+  func getMeals( completionBlock : () -> Void ) {
+    let dayStart = NSCalendar.currentCalendar().startOfDayForDate(selectedDate)
+    let dayEnd: NSDate = {
+      let components = NSDateComponents()
+      components.day = 1
+      components.second = -1
+      return NSCalendar.currentCalendar().dateByAddingComponents(components, toDate: dayStart, options: NSCalendarOptions())!
+    }()
+    self.meals = realm.objects(Meal).filter("date BETWEEN %@", [dayStart, dayEnd])
+
+    completionBlock()
   }
 }
 
