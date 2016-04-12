@@ -26,7 +26,7 @@ class ReactionTableViewController: UITableViewController {
   
   func pressDone(doneButton: UIBarButtonItem){
     notifyAndUpdateParentWithSelection()
-    saveOnRealm()
+    saveReactionStateOnUserDefaults()
     navigationController?.popViewControllerAnimated(true)
   }
   
@@ -72,30 +72,25 @@ extension ReactionTableViewController{
 
 extension ReactionTableViewController{
   
-  func saveOnRealm(){
-    deletePreviousSelectionFromSameCategory()
-    
-    realm.beginWrite()
+  func saveReactionStateOnUserDefaults(){
     let selected = options.filter{$0.selected}
-    realm.add(selected)
-    try! realm.commitWrite()
+    let archiveArray = NSMutableArray()
+    for selectedOption in selected{
+      let encodedReaction = NSKeyedArchiver.archivedDataWithRootObject(selectedOption)
+      archiveArray.addObject(encodedReaction)
+    }
+    if selected.count > 0 {
+      CheckPoint.saveState(archiveArray, keyName: "\(row)")}
   }
   
   func getPreviousSelectionFromCategory(){
-    let selected = realm.objects(Reaction)
+    let selected = CheckPoint.restorePreviousState(keyName: "\(row)")
     options = options.map(){ reaction in
       if selected.filter({$0.text == reaction.text}).count > 0 {
         reaction.selected = true
       }
       return reaction
     }
-  }
-  
-  func deletePreviousSelectionFromSameCategory(){
-    let reactions = realm.objects(Reaction).filter("category = '\(options[0].category)'")
-    realm.beginWrite()
-    realm.delete(reactions)
-    try! realm.commitWrite()
   }
 }
 

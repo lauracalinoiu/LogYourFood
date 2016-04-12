@@ -11,15 +11,15 @@ import Foundation
 let reactionKey = "com.3smurfs.Reaction"
 
 class CheckPoint {
-  class func saveState(memento: Reaction, keyName: String = reactionKey) {
+  class func saveState(memento: NSMutableArray, keyName: String = reactionKey) {
     let defaults = NSUserDefaults.standardUserDefaults()
     defaults.setObject(memento, forKey: keyName)
     defaults.synchronize()
   }
   
-  class func restorePreviousState(keyName keyName: String = reactionKey) -> Reaction {
+  class func restorePreviousState(keyName keyName: String = reactionKey) -> [Reaction] {
     let defaults = NSUserDefaults.standardUserDefaults()
     
-    return defaults.objectForKey(keyName) as? Reaction ?? Reaction()
+    return defaults.objectForKey(keyName) as? [Reaction] ?? [Reaction]()
   }
 }
