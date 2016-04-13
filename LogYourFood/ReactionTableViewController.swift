@@ -17,23 +17,25 @@ class ReactionTableViewController: UITableViewController {
   var options: [Reaction] = [Reaction]()
   var row: Int!
   
+  var meal: Meal?
+  
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(ReactionTableViewController.pressDone(_:)))
-    getPreviousSelectionFromCategory()
+  }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewDidLoad()
     tableView.reloadData()
   }
   
   func pressDone(doneButton: UIBarButtonItem){
     notifyAndUpdateParentWithSelection()
-    saveReactionStateOnUserDefaults()
     navigationController?.popViewControllerAnimated(true)
   }
   
   func notifyAndUpdateParentWithSelection(){
-    let positives = options.filter{$0.typeEnum == .Positive && $0.selected}.count
-    let negatives = options.filter{$0.typeEnum == .Negative && $0.selected}.count
-    reactionDelegate!.updateSelectedReaction(positives - negatives, row: row)
+    reactionDelegate!.updateSelectedReaction(meal!, whichRow: row)
   }
 }
 
@@ -55,8 +57,9 @@ extension ReactionTableViewController{
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("apetitCell", forIndexPath: indexPath)
-    cell.textLabel!.text = biasedOptions[indexPath.section][indexPath.row].text
-    cell.accessoryType = biasedOptions[indexPath.section][indexPath.row].selected ? .Checkmark : .None
+    let reaction = biasedOptions[indexPath.section][indexPath.row]
+    cell.textLabel!.text = reaction.text
+    cell.accessoryType = meal!.reactions.contains({ $0.text == reaction.text }) ? .Checkmark : .None
     return cell
   }
   
@@ -65,35 +68,15 @@ extension ReactionTableViewController{
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    biasedOptions[indexPath.section][indexPath.row].toggleSelection()
+    let reaction = biasedOptions[indexPath.section][indexPath.row]
+    if let indexOfReaction = meal?.reactions.indexOf({ $0.text == reaction.text}){
+      meal!.reactions.removeAtIndex(indexOfReaction)
+    } else{
+      meal!.reactions.append(reaction)
+    }
     tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
   }
 }
-
-extension ReactionTableViewController{
-  
-  func saveReactionStateOnUserDefaults(){
-    let selected = options.filter{$0.selected}
-    let archiveArray = NSMutableArray()
-    for selectedOption in selected{
-      let encodedReaction = NSKeyedArchiver.archivedDataWithRootObject(selectedOption)
-      archiveArray.addObject(encodedReaction)
-    }
-    if selected.count > 0 {
-      CheckPoint.saveState(archiveArray, keyName: "\(row)")}
-  }
-  
-  func getPreviousSelectionFromCategory(){
-    let selected = CheckPoint.restorePreviousState(keyName: "\(row)")
-    options = options.map(){ reaction in
-      if selected.filter({$0.text == reaction.text}).count > 0 {
-        reaction.selected = true
-      }
-      return reaction
-    }
-  }
-}
-
 protocol ReactionDelegate{
-  func updateSelectedReaction(positivesMinusNegatives: Int, row: Int)
+  func updateSelectedReaction(updatedMeal: Meal, whichRow: Int)
 }

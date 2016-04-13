@@ -16,6 +16,7 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
   var typeOfMeal : DishType?
   
   @IBOutlet weak var foodItems: UITextView!
+  var meal = Meal()
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
@@ -27,20 +28,13 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    if segue.identifier == "ChooseMeal" {
-      (segue.destinationViewController as! MealSelectorTableViewController).delegate = self
-    }
-    
-    if segue.identifier == "ApetitReaction" {
-      (segue.destinationViewController as! ApetitReactionsTableViewController).reactionDelegate = self
-    }
-    
-    if segue.identifier == "EnergyReaction" {
-      (segue.destinationViewController as! EnergyReactionTableViewController).reactionDelegate = self
-    }
-    
-    if segue.identifier == "EmotionReaction" {
-      (segue.destinationViewController as! EmotionReactionTableViewController).reactionDelegate = self
+    switch segue.destinationViewController {
+    case let controller as MealSelectorTableViewController:
+      controller.delegate = self
+    case let controller as ReactionTableViewController:
+      controller.reactionDelegate = self
+      controller.meal = meal
+    default: break
     }
   }
   
@@ -49,12 +43,16 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
     typeOfMeal = DishType(rawValue: data)
   }
   
-  func updateSelectedReaction(positivesMinusNegatives: Int, row: Int) {
-    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: row, inSection: 2))?.detailTextLabel!.text = getEmonji(positivesMinusNegatives)
+  func updateSelectedReaction(updatedMeal: Meal, whichRow: Int) {
+    meal = updatedMeal
+    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: whichRow, inSection: 2))?.detailTextLabel!.text = getEmonji()
   }
   
-  func getEmonji(difference: Int) -> String{
-    switch difference{
+  func getEmonji() -> String{
+    let positives = meal.reactions.filter{$0.typeEnum == .Positive}.count
+    let negatives = meal.reactions.filter{$0.typeEnum == .Negative}.count
+    let difference = positives - negatives
+    switch  difference{
     case _ where difference > 0: return "😀"
     case _ where difference < 0: return "☹️"
     default: return "😐"
@@ -63,12 +61,12 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
   
   func saveMeal(saveButton: UIBarButtonItem){
     commitMealToRealm(newMealFromUserEnteredData())
+    navigationController?.popViewControllerAnimated(true)
   }
 }
 
 extension NewMealTableViewController{
   func newMealFromUserEnteredData() -> Meal{
-    let meal = Meal()
     meal.date = date
     if let dishType = typeOfMeal{
       meal.dishTypeEnum = dishType

@@ -11,7 +11,6 @@
 		D31162CC1CAAAFCD000A5241 /* ReactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31162CB1CAAAFCD000A5241 /* ReactionTableViewController.swift */; };
 		D31162CE1CAAB1EF000A5241 /* EnergyReactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31162CD1CAAB1EF000A5241 /* EnergyReactionTableViewController.swift */; };
 		D31162D11CABB9C4000A5241 /* EmotionReactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31162D01CABB9C3000A5241 /* EmotionReactionTableViewController.swift */; };
-		D3164ED01CBB96EC0071172B /* CheckPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3164ECF1CBB96EC0071172B /* CheckPoint.swift */; };
 		D32EDA0B1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32EDA0A1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift */; };
 		D348DEAF1C97E98A000D632C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348DEAE1C97E98A000D632C /* AppDelegate.swift */; };
 		D348DEB41C97E98A000D632C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D348DEB21C97E98A000D632C /* Main.storyboard */; };
@@ -32,7 +31,6 @@
 		D31162CB1CAAAFCD000A5241 /* ReactionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionTableViewController.swift; sourceTree = "<group>"; };
 		D31162CD1CAAB1EF000A5241 /* EnergyReactionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyReactionTableViewController.swift; sourceTree = "<group>"; };
 		D31162D01CABB9C3000A5241 /* EmotionReactionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionReactionTableViewController.swift; sourceTree = "<group>"; };
-		D3164ECF1CBB96EC0071172B /* CheckPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckPoint.swift; sourceTree = "<group>"; };
 		D32EDA0A1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApetitReactionsTableViewController.swift; sourceTree = "<group>"; };
 		D348DEAB1C97E98A000D632C /* LogYourFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogYourFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D348DEAE1C97E98A000D632C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,7 +119,6 @@
 				D348DEB51C97E98A000D632C /* Assets.xcassets */,
 				D348DEB71C97E98A000D632C /* LaunchScreen.storyboard */,
 				D348DEBA1C97E98A000D632C /* Info.plist */,
-				D3164ECF1CBB96EC0071172B /* CheckPoint.swift */,
 			);
 			path = LogYourFood;
 			sourceTree = "<group>";
@@ -265,7 +262,6 @@
 				D31162CC1CAAAFCD000A5241 /* ReactionTableViewController.swift in Sources */,
 				D348DEAF1C97E98A000D632C /* AppDelegate.swift in Sources */,
 				D31162D11CABB9C4000A5241 /* EmotionReactionTableViewController.swift in Sources */,
-				D3164ED01CBB96EC0071172B /* CheckPoint.swift in Sources */,
 				D38E87AF1CA3AB480048A83E /* NewMealTableViewController.swift in Sources */,
 				D3ACF3991CA91762003533D8 /* Reaction.swift in Sources */,
 				D38E87AD1CA375BB0048A83E /* MealSelectorTableViewController.swift in Sources */,

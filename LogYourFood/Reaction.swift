@@ -23,7 +23,6 @@ class Reaction: Object{
   
   dynamic var category = Category.Apetit.rawValue
   dynamic var text: String?
-  dynamic var selected: Bool = false
   dynamic var type = Type.Positive.rawValue
   
   var categoryEnum: Category{
@@ -49,10 +48,5 @@ class Reaction: Object{
     self.categoryEnum = category
     self.text = text
     self.typeEnum = type
-    self.selected = selected
-  }
-  
-  func toggleSelection(){
-    selected = !selected
   }
 }
