@@ -72,11 +72,6 @@ extension NewMealTableViewController{
       meal.dishTypeEnum = dishType
     }
     meal.foodItems = foodItems.text
-    meal.reactions = realm.objects(Reaction).reduce(List<Reaction>()){  (list, element) -> List<Reaction> in
-      list.append(element)
-      return list
-    }
-    
     return meal
   }
   
