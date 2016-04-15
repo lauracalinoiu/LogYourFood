@@ -11,8 +11,7 @@ import UIKit
 class ApetitReactionsTableViewController: ReactionTableViewController {
   
   override func viewDidLoad() {
-    
-    row = 0
+    category = .Apetit
     options = [ Reaction(category: .Apetit,text: "You feel sated, satisfied", type: .Positive, selected: false),
       Reaction(category: .Apetit,text: "You don't want desert", type: .Positive, selected: false),
       Reaction(category: .Apetit,text: "You don't want more food", type: .Positive, selected: false),

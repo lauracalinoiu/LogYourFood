@@ -15,7 +15,7 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
   var date = NSDate()
   var typeOfMeal : DishType?
   
-  @IBOutlet weak var foodItems: UITextView!
+  @IBOutlet weak var foodItemsTextView: UITextView!
   var meal = Meal()
   
   override func viewWillAppear(animated: Bool) {
@@ -43,20 +43,10 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
     typeOfMeal = DishType(rawValue: data)
   }
   
-  func updateSelectedReaction(updatedMeal: Meal, whichRow: Int) {
+  func updateSelectedReaction(updatedMeal: Meal, category: Category) {
     meal = updatedMeal
-    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: whichRow, inSection: 2))?.detailTextLabel!.text = getEmonji()
-  }
-  
-  func getEmonji() -> String{
-    let positives = meal.reactions.filter{$0.typeEnum == .Positive}.count
-    let negatives = meal.reactions.filter{$0.typeEnum == .Negative}.count
-    let difference = positives - negatives
-    switch  difference{
-    case _ where difference > 0: return "😀"
-    case _ where difference < 0: return "☹️"
-    default: return "😐"
-    }
+    let reactions = meal.reactions.filter { $0.category == category.rawValue }
+    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: category.rawValue, inSection: 2))?.detailTextLabel!.text = EmonjiCalculator.getEmonji(reactions)
   }
   
   func saveMeal(saveButton: UIBarButtonItem){
@@ -71,7 +61,7 @@ extension NewMealTableViewController{
     if let dishType = typeOfMeal{
       meal.dishTypeEnum = dishType
     }
-    meal.foodItems = foodItems.text
+    meal.foodItems = foodItemsTextView.text
     return meal
   }
   

@@ -39,6 +39,7 @@ class LogFoodController: UIViewController{
     datePicker.addTarget(self, action: #selector(LogFoodController.datePickerChanged(_:)), forControlEvents: .ValueChanged)
     
     mealTable.dataSource = self
+    mealTable.delegate = self
     datePicker.hidden = true
   }
   
@@ -64,18 +65,18 @@ class LogFoodController: UIViewController{
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "NewMeal" {
       clearNSUserDefaults()
-      deleteSelectionFromRealm()
       (segue.destinationViewController as! NewMealTableViewController).date = selectedDate
     }
   }
 }
 
-extension LogFoodController: UITableViewDataSource{
+extension LogFoodController: UITableViewDataSource, UITableViewDelegate{
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("mealCell", forIndexPath: indexPath)
-    cell.textLabel?.text = meals[indexPath.row].dishType
-    cell.detailTextLabel?.text = meals[indexPath.row].foodItems
+    let cell = tableView.dequeueReusableCellWithIdentifier("mealCell", forIndexPath: indexPath) as! MealOverviewCell
+    cell.typeOfMealLabel.text = meals[indexPath.row].dishType
+    cell.foodItemsLabel.text = meals[indexPath.row].foodItems
+    cell.feedbackLabel.text = EmonjiCalculator.getEmonji(Array(meals[indexPath.row].reactions))
     return cell
   }
   
@@ -86,16 +87,25 @@ extension LogFoodController: UITableViewDataSource{
   func numberOfSectionsInTableView(tableView: UITableView) -> Int {
     return 1
   }
+  
+  func tableView(tableView: UITableView, editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+    return .Delete
+  }
+  
+  func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+  {
+    if editingStyle == .Delete
+    {
+      try! realm.write{
+        realm.delete(meals[indexPath.row].reactions)
+        realm.delete(meals[indexPath.row])
+      }
+      tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+    }
+  }
 }
 
 extension LogFoodController{
-  
-  func deleteSelectionFromRealm(){
-    let reactions = realm.objects(Reaction)
-    realm.beginWrite()
-    realm.delete(reactions)
-    try! realm.commitWrite()
-  }
   
   func clearNSUserDefaults(){
     for key in Array(NSUserDefaults.standardUserDefaults().dictionaryRepresentation().keys) {
@@ -112,7 +122,7 @@ extension LogFoodController{
       return NSCalendar.currentCalendar().dateByAddingComponents(components, toDate: dayStart, options: NSCalendarOptions())!
     }()
     self.meals = realm.objects(Meal).filter("date BETWEEN %@", [dayStart, dayEnd])
-
+    
     completionBlock()
   }
 }

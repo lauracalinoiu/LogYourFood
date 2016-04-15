@@ -10,7 +10,7 @@ import Foundation
 class EmotionReactionTableViewController: ReactionTableViewController{
   
   override func viewDidLoad() {
-    row = 2
+    category = .Emotion
     options = [ Reaction(category: .Emotion,text: "You feel good", type: .Positive, selected: false),
       Reaction(category: .Emotion,text: "You are refreshed", type: .Positive, selected: false),
       Reaction(category: .Emotion,text: "Your emotions are high", type: .Positive, selected: false),

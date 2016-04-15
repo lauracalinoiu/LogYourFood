@@ -10,7 +10,7 @@ import Foundation
 class EnergyReactionTableViewController: ReactionTableViewController{
   
   override func viewDidLoad() {
-    row = 1
+    category = .Energy
     options = [ Reaction(category: .Energy,text: "Your energy is back", type: .Positive, selected: false),
         Reaction(category: .Energy,text: "You feel a good energy that will last longer", type: .Positive, selected: false),
       Reaction(category: .Energy,text: "Your meal gave you too much or too less energy", type: .Negative, selected: false),

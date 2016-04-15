@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-enum Category: String{
+enum Category: Int{
   case Apetit
   case Energy
   case Emotion
@@ -48,5 +48,19 @@ class Reaction: Object{
     self.categoryEnum = category
     self.text = text
     self.typeEnum = type
+  }
+}
+
+class EmonjiCalculator{
+  
+  class func getEmonji(reactions: [Reaction]) -> String{
+    let positives = reactions.filter{$0.typeEnum == .Positive}.count
+    let negatives = reactions.filter{$0.typeEnum == .Negative}.count
+    let difference = positives - negatives
+    switch  difference{
+    case _ where difference > 0: return "😀"
+    case _ where difference < 0: return "☹️"
+    default: return "😐"
+    }
   }
 }

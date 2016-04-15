@@ -15,7 +15,7 @@ class ReactionTableViewController: UITableViewController {
   let realm = try! Realm()
   
   var options: [Reaction] = [Reaction]()
-  var row: Int!
+  var category: Category!
   
   var meal: Meal?
   
@@ -35,7 +35,7 @@ class ReactionTableViewController: UITableViewController {
   }
   
   func notifyAndUpdateParentWithSelection(){
-    reactionDelegate!.updateSelectedReaction(meal!, whichRow: row)
+    reactionDelegate!.updateSelectedReaction(meal!, category: category)
   }
 }
 
@@ -78,5 +78,5 @@ extension ReactionTableViewController{
   }
 }
 protocol ReactionDelegate{
-  func updateSelectedReaction(updatedMeal: Meal, whichRow: Int)
+  func updateSelectedReaction(updatedMeal: Meal, category: Category)
 }
