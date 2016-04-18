@@ -19,7 +19,7 @@ enum Type: String{
   case Negative
 }
 
-class Reaction: Object{
+class Reaction: Object, Clonable{
   
   dynamic var category = Category.Apetit.rawValue
   dynamic var text: String?
@@ -48,6 +48,15 @@ class Reaction: Object{
     self.categoryEnum = category
     self.text = text
     self.typeEnum = type
+  }
+  
+  func clone() -> Reaction{
+    var reaction = Reaction()
+    reaction.category = category
+    reaction.text = text
+    reaction.type = type
+    
+    return reaction
   }
 }
 

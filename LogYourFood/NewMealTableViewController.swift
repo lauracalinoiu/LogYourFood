@@ -12,14 +12,14 @@ import RealmSwift
 class NewMealTableViewController: UITableViewController, MealDelegate, ReactionDelegate{
   
   let realm = try! Realm()
-  var date = NSDate()
+  var meal: Meal!
   var typeOfMeal : DishType?
   
   @IBOutlet weak var foodItemsTextView: UITextView!
-  var meal = Meal()
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    populateUIWithValuesFromRealm()
   }
   
   override func viewDidLoad() {
@@ -57,12 +57,15 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
 
 extension NewMealTableViewController{
   func newMealFromUserEnteredData() -> Meal{
-    meal.date = date
     if let dishType = typeOfMeal{
       meal.dishTypeEnum = dishType
     }
     meal.foodItems = foodItemsTextView.text
     return meal
+  }
+  
+  func populateUIWithValuesFromRealm(){
+    foodItemsTextView.text = meal.foodItems
   }
   
   func commitMealToRealm(meal: Meal){

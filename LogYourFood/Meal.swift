@@ -20,7 +20,7 @@ enum DishType: String{
   case Snack
 }
 
-class Meal : Object{
+class Meal : Object, Clonable{
   dynamic var date: NSDate = NSDate()
   dynamic var dishType = DishType.Breakfast.rawValue
   
@@ -35,4 +35,22 @@ class Meal : Object{
   
   dynamic var foodItems: String = ""
   var reactions = List<Reaction>()
+  
+  func clone() -> Meal{
+    var meal = Meal()
+    meal.date = date
+    meal.dishTypeEnum = dishTypeEnum
+    meal.foodItems = foodItems
+    
+    for reaction in reactions{
+      meal.reactions.append(reaction.clone())
+    }
+    
+    return meal
+  }
+}
+
+protocol Clonable{
+  associatedtype Element
+  func clone() -> Element
 }

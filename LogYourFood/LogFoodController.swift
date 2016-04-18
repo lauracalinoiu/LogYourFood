@@ -20,6 +20,7 @@ class LogFoodController: UIViewController{
   let realm = try! Realm()
   
   var editingCell: Bool = false
+  var selectedMeal: Meal?
   
   let dateFormatter: NSDateFormatter = {
     let formatter = NSDateFormatter()
@@ -65,7 +66,15 @@ class LogFoodController: UIViewController{
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "NewMeal" {
       clearNSUserDefaults()
-      (segue.destinationViewController as! NewMealTableViewController).date = selectedDate
+      let meal = Meal()
+      meal.date = selectedDate
+      (segue.destinationViewController as! NewMealTableViewController).meal = meal
+    }
+    
+    if segue.identifier == "EditMeal" {
+      if let meal = selectedMeal{
+        (segue.destinationViewController as! NewMealTableViewController).meal = meal.clone()
+      }
     }
   }
 }
@@ -102,6 +111,11 @@ extension LogFoodController: UITableViewDataSource, UITableViewDelegate{
       }
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
     }
+  }
+  
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    selectedMeal = meals[indexPath.row]
+    performSegueWithIdentifier("EditMeal", sender: self)
   }
 }
 
