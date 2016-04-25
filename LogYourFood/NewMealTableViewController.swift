@@ -53,7 +53,7 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
     meal = updatedMeal
     let reactions = meal.reactions.filter { $0.category == category.rawValue }
     if reactions.count > 0{
-    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: category.rawValue, inSection: 2))?.detailTextLabel!.text = EmonjiCalculator.getEmonji(reactions)
+    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: category.rawValue, inSection: 2))?.backgroundColor = EmonjiCalculator.getEmonji(reactions)
     } else {
       tableView.cellForRowAtIndexPath(NSIndexPath(forRow: category.rawValue, inSection: 2))?.detailTextLabel!.text = "Choose"
     }

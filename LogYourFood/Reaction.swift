@@ -62,14 +62,14 @@ class Reaction: Object, Clonable{
 
 class EmonjiCalculator{
   
-  class func getEmonji(reactions: [Reaction]) -> String{
+  class func getEmonji(reactions: [Reaction]) -> UIColor{
     let positives = reactions.filter{$0.typeEnum == .Positive}.count
     let negatives = reactions.filter{$0.typeEnum == .Negative}.count
     let difference = positives - negatives
     switch  difference{
-    case _ where difference > 0: return "😀"
-    case _ where difference < 0: return "☹️"
-    default: return "😐"
+    case _ where difference > 0: return UIColor.greenColor()
+    case _ where difference < 0: return UIColor.orangeColor()
+    default: return UIColor.grayColor()
     }
   }
 }

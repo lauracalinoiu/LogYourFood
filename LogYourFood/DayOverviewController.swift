@@ -83,7 +83,7 @@ extension DayOverviewController: UITableViewDataSource, UITableViewDelegate{
     let cell = tableView.dequeueReusableCellWithIdentifier("mealCell", forIndexPath: indexPath) as! MealOverviewCell
     cell.typeOfMealLabel.text = meals[indexPath.row].dishTypeEnum.getDescription()
     cell.foodItemsLabel.text = meals[indexPath.row].foodItems
-    cell.feedbackLabel.text = EmonjiCalculator.getEmonji(Array(meals[indexPath.row].reactions))
+    cell.backgroundColor = EmonjiCalculator.getEmonji(Array(meals[indexPath.row].reactions))
     return cell
   }
   
