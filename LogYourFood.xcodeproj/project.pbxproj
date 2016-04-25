@@ -12,11 +12,11 @@
 		D31162CE1CAAB1EF000A5241 /* EnergyReactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31162CD1CAAB1EF000A5241 /* EnergyReactionTableViewController.swift */; };
 		D31162D11CABB9C4000A5241 /* EmotionReactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31162D01CABB9C3000A5241 /* EmotionReactionTableViewController.swift */; };
 		D32EDA0B1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32EDA0A1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift */; };
+		D331E04F1CC8C89A001EF459 /* DayOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D331E04E1CC8C89A001EF459 /* DayOverviewController.swift */; };
 		D348DEAF1C97E98A000D632C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348DEAE1C97E98A000D632C /* AppDelegate.swift */; };
 		D348DEB41C97E98A000D632C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D348DEB21C97E98A000D632C /* Main.storyboard */; };
 		D348DEB61C97E98A000D632C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D348DEB51C97E98A000D632C /* Assets.xcassets */; };
 		D348DEB91C97E98A000D632C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D348DEB71C97E98A000D632C /* LaunchScreen.storyboard */; };
-		D348DEC51CA1433D000D632C /* LogFoodController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348DEC41CA1433D000D632C /* LogFoodController.swift */; };
 		D36852C11CABD05200820B2F /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36852C01CABD05200820B2F /* Meal.swift */; };
 		D36852C31CABD13E00820B2F /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36852C21CABD13E00820B2F /* RealmSwift.framework */; };
 		D36D2B131CBF7FE2001530DE /* MealOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36D2B121CBF7FE2001530DE /* MealOverviewCell.swift */; };
@@ -33,13 +33,13 @@
 		D31162CD1CAAB1EF000A5241 /* EnergyReactionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyReactionTableViewController.swift; sourceTree = "<group>"; };
 		D31162D01CABB9C3000A5241 /* EmotionReactionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionReactionTableViewController.swift; sourceTree = "<group>"; };
 		D32EDA0A1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApetitReactionsTableViewController.swift; sourceTree = "<group>"; };
+		D331E04E1CC8C89A001EF459 /* DayOverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayOverviewController.swift; sourceTree = "<group>"; };
 		D348DEAB1C97E98A000D632C /* LogYourFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogYourFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D348DEAE1C97E98A000D632C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D348DEB31C97E98A000D632C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D348DEB51C97E98A000D632C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D348DEB81C97E98A000D632C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D348DEBA1C97E98A000D632C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D348DEC41CA1433D000D632C /* LogFoodController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFoodController.swift; sourceTree = "<group>"; };
 		D36852C01CABD05200820B2F /* Meal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		D36852C21CABD13E00820B2F /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = "Pods/../build/Debug-iphoneos/RealmSwift.framework"; sourceTree = "<group>"; };
 		D36D2B121CBF7FE2001530DE /* MealOverviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealOverviewCell.swift; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 				D36852C41CABD1F400820B2F /* Realm Models */,
 				D31162CF1CABB96B000A5241 /* ReactionUI */,
 				D348DEAE1C97E98A000D632C /* AppDelegate.swift */,
-				D348DEC41CA1433D000D632C /* LogFoodController.swift */,
+				D331E04E1CC8C89A001EF459 /* DayOverviewController.swift */,
 				D36D2B121CBF7FE2001530DE /* MealOverviewCell.swift */,
 				D38E87AE1CA3AB480048A83E /* NewMealTableViewController.swift */,
 				D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */,
@@ -260,11 +260,11 @@
 			files = (
 				D36852C11CABD05200820B2F /* Meal.swift in Sources */,
 				D31162CE1CAAB1EF000A5241 /* EnergyReactionTableViewController.swift in Sources */,
-				D348DEC51CA1433D000D632C /* LogFoodController.swift in Sources */,
 				D32EDA0B1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift in Sources */,
 				D31162CC1CAAAFCD000A5241 /* ReactionTableViewController.swift in Sources */,
 				D348DEAF1C97E98A000D632C /* AppDelegate.swift in Sources */,
 				D36D2B131CBF7FE2001530DE /* MealOverviewCell.swift in Sources */,
+				D331E04F1CC8C89A001EF459 /* DayOverviewController.swift in Sources */,
 				D31162D11CABB9C4000A5241 /* EmotionReactionTableViewController.swift in Sources */,
 				D38E87AF1CA3AB480048A83E /* NewMealTableViewController.swift in Sources */,
 				D3ACF3991CA91762003533D8 /* Reaction.swift in Sources */,

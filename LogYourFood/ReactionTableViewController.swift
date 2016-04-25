@@ -11,9 +11,7 @@ import RealmSwift
 
 class ReactionTableViewController: UITableViewController {
   
-  var reactionDelegate: ReactionDelegate?
-  let realm = try! Realm()
-  
+  var reactionDelegate: ReactionDelegate?  
   var options: [Reaction] = [Reaction]()
   var category: Category!
   

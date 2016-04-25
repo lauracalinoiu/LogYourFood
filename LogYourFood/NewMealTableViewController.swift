@@ -9,13 +9,17 @@
 import UIKit
 import RealmSwift
 
-class NewMealTableViewController: UITableViewController, MealDelegate, ReactionDelegate{
+enum TypeOfController{
+  case UpdaterController
+  case InserterController
+}
+
+class NewMealTableViewController: UITableViewController, MealDelegate, ReactionDelegate, UITextViewDelegate{
   
   let realm = try! Realm()
   var meal: Meal!
-  var typeOfMeal : DishType?
-  
   @IBOutlet weak var foodItemsTextView: UITextView!
+  var kindOfController: TypeOfController!
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
@@ -25,6 +29,7 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
   override func viewDidLoad() {
     super.viewDidLoad()
     self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(NewMealTableViewController.saveMeal(_:)))
+    foodItemsTextView.delegate = self
   }
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -40,7 +45,14 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
   
   func updateTypeOfMealWith(data: String) {
     tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.detailTextLabel!.text = data
-    typeOfMeal = DishType(rawValue: data)
+    if kindOfController == .UpdaterController{
+      updateMeal{
+        self.meal.dishTypeEnum = DishType(rawValue: data)!
+      }
+    } else {
+      meal.dishTypeEnum = DishType(rawValue: data)!
+    }
+    
   }
   
   func updateSelectedReaction(updatedMeal: Meal, category: Category) {
@@ -50,27 +62,47 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
   }
   
   func saveMeal(saveButton: UIBarButtonItem){
-    commitMealToRealm(newMealFromUserEnteredData())
-    navigationController?.popViewControllerAnimated(true)
+    if kindOfController == .InserterController {
+      insertNewMeal(){
+        self.navigationController?.popViewControllerAnimated(true)
+      }
+    }
+  }
+  
+  func textViewDidEndEditing(textView: UITextView) {
+    if kindOfController == .UpdaterController{
+      updateMeal{
+        self.meal.foodItems = textView.text
+      }
+    } else {
+      meal.foodItems = textView.text
+    }
   }
 }
 
 extension NewMealTableViewController{
-  func newMealFromUserEnteredData() -> Meal{
-    if let dishType = typeOfMeal{
-      meal.dishTypeEnum = dishType
-    }
-    meal.foodItems = foodItemsTextView.text
-    return meal
-  }
   
   func populateUIWithValuesFromRealm(){
     foodItemsTextView.text = meal.foodItems
+    updateSelectedReaction(meal, category: .Apetit)
+    updateSelectedReaction(meal, category: .Energy)
+    updateSelectedReaction(meal, category: .Emotion)
+    updateTypeOfMealWith(meal.dishType)
   }
   
-  func commitMealToRealm(meal: Meal){
+  func updateMeal(updateBlock: ()->()){
+    try! realm.write(){
+      updateBlock()
+    }
+  }
+  
+  func insertNewMeal(completionBlock: () -> ()){
+    meal.id = NSUUID().UUIDString
     realm.beginWrite()
     realm.add(meal)
     try! realm.commitWrite()
+    
+    completionBlock()
+    
   }
 }

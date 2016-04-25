@@ -1,15 +1,15 @@
 //
-//  LogFoodController.swift
+//  DayOverviewController.swift
 //  LogYourFood
 //
-//  Created by Laura Calinoiu on 22/03/16.
+//  Created by Laura Calinoiu on 21/04/16.
 //  Copyright © 2016 3smurfs. All rights reserved.
 //
 
 import UIKit
 import RealmSwift
 
-class LogFoodController: UIViewController{
+class DayOverviewController: UIViewController{
   
   @IBOutlet weak var datePicker: UIDatePicker!
   @IBOutlet weak var todayButton: UIButton!
@@ -18,8 +18,6 @@ class LogFoodController: UIViewController{
   var meals: Results<Meal>!
   
   let realm = try! Realm()
-  
-  var editingCell: Bool = false
   var selectedMeal: Meal?
   
   let dateFormatter: NSDateFormatter = {
@@ -37,8 +35,7 @@ class LogFoodController: UIViewController{
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    datePicker.addTarget(self, action: #selector(LogFoodController.datePickerChanged(_:)), forControlEvents: .ValueChanged)
-    
+    datePicker.addTarget(self, action: #selector(DayOverviewController.datePickerChanged(_:)), forControlEvents: .ValueChanged)
     mealTable.dataSource = self
     mealTable.delegate = self
     datePicker.hidden = true
@@ -46,7 +43,7 @@ class LogFoodController: UIViewController{
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    getMeals{
+    getMealsFromDay(selectedDate){
       self.mealTable.reloadData()
     }
   }
@@ -58,7 +55,7 @@ class LogFoodController: UIViewController{
   func datePickerChanged(datePicker:UIDatePicker) {
     let strDate = dateFormatter.stringFromDate(datePicker.date)
     todayButton.setTitle(strDate, forState: .Normal)
-    getMeals{
+    getMealsFromDay(selectedDate){
       self.mealTable.reloadData()
     }
   }
@@ -68,18 +65,23 @@ class LogFoodController: UIViewController{
       clearNSUserDefaults()
       let meal = Meal()
       meal.date = selectedDate
-      (segue.destinationViewController as! NewMealTableViewController).meal = meal
+      let newMealController = segue.destinationViewController as! NewMealTableViewController
+      newMealController.meal = meal
+      newMealController.kindOfController = .InserterController
     }
     
     if segue.identifier == "EditMeal" {
       if let meal = selectedMeal{
-        (segue.destinationViewController as! NewMealTableViewController).meal = meal.clone()
+        let updaterController = segue.destinationViewController as! NewMealTableViewController
+        updaterController.meal = meal
+        updaterController.kindOfController = .UpdaterController
+        //deleteMeal(meal)
       }
     }
   }
 }
 
-extension LogFoodController: UITableViewDataSource, UITableViewDelegate{
+extension DayOverviewController: UITableViewDataSource, UITableViewDelegate{
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("mealCell", forIndexPath: indexPath) as! MealOverviewCell
@@ -103,12 +105,8 @@ extension LogFoodController: UITableViewDataSource, UITableViewDelegate{
   
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
   {
-    if editingStyle == .Delete
-    {
-      try! realm.write{
-        realm.delete(meals[indexPath.row].reactions)
-        realm.delete(meals[indexPath.row])
-      }
+    if editingStyle == .Delete {
+      deleteMeal(meals[indexPath.row])
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
     }
   }
@@ -119,7 +117,7 @@ extension LogFoodController: UITableViewDataSource, UITableViewDelegate{
   }
 }
 
-extension LogFoodController{
+extension DayOverviewController{
   
   func clearNSUserDefaults(){
     for key in Array(NSUserDefaults.standardUserDefaults().dictionaryRepresentation().keys) {
@@ -127,7 +125,7 @@ extension LogFoodController{
     }
   }
   
-  func getMeals( completionBlock : () -> Void ) {
+  func getMealsFromDay(selectedDate: NSDate, completionBlock : () -> Void ) {
     let dayStart = NSCalendar.currentCalendar().startOfDayForDate(selectedDate)
     let dayEnd: NSDate = {
       let components = NSDateComponents()
@@ -136,8 +134,14 @@ extension LogFoodController{
       return NSCalendar.currentCalendar().dateByAddingComponents(components, toDate: dayStart, options: NSCalendarOptions())!
     }()
     self.meals = realm.objects(Meal).filter("date BETWEEN %@", [dayStart, dayEnd])
-    
     completionBlock()
+  }
+  
+  func deleteMeal(meal: Meal){
+    realm.beginWrite()
+    realm.delete(meal.reactions)
+    realm.delete(meal)
+    try! realm.commitWrite()
   }
 }
 
@@ -154,4 +158,5 @@ extension UIView {
       }, completion: completion)
   }
 }
+
 

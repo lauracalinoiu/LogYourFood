@@ -10,7 +10,6 @@ import RealmSwift
 
 enum DishType: String{
   case Breakfast
-  case Second_breakfast
   case Brunch
   case Elevenses
   case Lunch
@@ -23,6 +22,11 @@ enum DishType: String{
 class Meal : Object, Clonable{
   dynamic var date: NSDate = NSDate()
   dynamic var dishType = DishType.Breakfast.rawValue
+  dynamic var id: String = ""
+  
+  override static func primaryKey() -> String? {
+    return "id"
+  }
   
   var dishTypeEnum: DishType{
     get{
@@ -37,7 +41,7 @@ class Meal : Object, Clonable{
   var reactions = List<Reaction>()
   
   func clone() -> Meal{
-    var meal = Meal()
+    let meal = Meal()
     meal.date = date
     meal.dishTypeEnum = dishTypeEnum
     meal.foodItems = foodItems

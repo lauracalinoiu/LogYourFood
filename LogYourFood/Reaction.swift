@@ -51,7 +51,7 @@ class Reaction: Object, Clonable{
   }
   
   func clone() -> Reaction{
-    var reaction = Reaction()
+    let reaction = Reaction()
     reaction.category = category
     reaction.text = text
     reaction.type = type
