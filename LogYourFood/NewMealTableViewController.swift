@@ -52,7 +52,11 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
   func updateSelectedReaction(updatedMeal: Meal, category: Category) {
     meal = updatedMeal
     let reactions = meal.reactions.filter { $0.category == category.rawValue }
+    if reactions.count > 0{
     tableView.cellForRowAtIndexPath(NSIndexPath(forRow: category.rawValue, inSection: 2))?.detailTextLabel!.text = EmonjiCalculator.getEmonji(reactions)
+    } else {
+      tableView.cellForRowAtIndexPath(NSIndexPath(forRow: category.rawValue, inSection: 2))?.detailTextLabel!.text = "Choose"
+    }
   }
   
   func saveMeal(saveButton: UIBarButtonItem){
