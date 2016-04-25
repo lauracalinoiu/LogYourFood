@@ -45,14 +45,7 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
   
   func updateTypeOfMealWith(data: String) {
     tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.detailTextLabel!.text = data
-    if kindOfController == .UpdaterController{
-      updateMeal{
-        self.meal.dishTypeEnum = DishType(rawValue: data)!
-      }
-    } else {
-      meal.dishTypeEnum = DishType(rawValue: data)!
-    }
-    
+    self.meal.dishTypeEnum = DishType(rawValue: data)!
   }
   
   func updateSelectedReaction(updatedMeal: Meal, category: Category) {
@@ -66,15 +59,15 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
       insertNewMeal(){
         self.navigationController?.popViewControllerAnimated(true)
       }
+    } else {
+      updateMeal(){
+        self.navigationController?.popViewControllerAnimated(true)
+      }
     }
   }
   
   func textViewDidEndEditing(textView: UITextView) {
-    if kindOfController == .UpdaterController{
-      updateMeal{
-        self.meal.foodItems = textView.text
-      }
-    } else {
+    try! realm.write{
       meal.foodItems = textView.text
     }
   }
@@ -90,19 +83,18 @@ extension NewMealTableViewController{
     updateTypeOfMealWith(meal.dishType)
   }
   
-  func updateMeal(updateBlock: ()->()){
-    try! realm.write(){
-      updateBlock()
+  func insertNewMeal(completionBlock: () -> ()){
+    try! realm.write{
+      meal.id = NSUUID().UUIDString
+      realm.add(meal)
     }
+    completionBlock()
   }
   
-  func insertNewMeal(completionBlock: () -> ()){
-    meal.id = NSUUID().UUIDString
-    realm.beginWrite()
-    realm.add(meal)
-    try! realm.commitWrite()
-    
+  func updateMeal(completionBlock: () -> ()){
+    try! realm.write{
+      realm.add(meal, update: true)
+    }
     completionBlock()
-    
   }
 }

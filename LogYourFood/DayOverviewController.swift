@@ -72,10 +72,10 @@ class DayOverviewController: UIViewController{
     
     if segue.identifier == "EditMeal" {
       if let meal = selectedMeal{
+        let cloneMeal = meal.clone()
         let updaterController = segue.destinationViewController as! NewMealTableViewController
-        updaterController.meal = meal
+        updaterController.meal = cloneMeal
         updaterController.kindOfController = .UpdaterController
-        //deleteMeal(meal)
       }
     }
   }

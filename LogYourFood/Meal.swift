@@ -42,6 +42,7 @@ class Meal : Object, Clonable{
   
   func clone() -> Meal{
     let meal = Meal()
+    meal.id = id
     meal.date = date
     meal.dishTypeEnum = dishTypeEnum
     meal.foodItems = foodItems
