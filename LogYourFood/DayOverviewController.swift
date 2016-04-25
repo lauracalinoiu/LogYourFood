@@ -15,9 +15,8 @@ class DayOverviewController: UIViewController{
   @IBOutlet weak var todayButton: UIButton!
   @IBOutlet weak var mealTable: UITableView!
   
-  var meals: Results<Meal>!
-  
   let realm = try! Realm()
+  var meals: Results<Meal>!
   var selectedMeal: Meal?
   
   let dateFormatter: NSDateFormatter = {
@@ -60,7 +59,6 @@ class DayOverviewController: UIViewController{
   
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     if segue.identifier == "NewMeal" {
-      clearNSUserDefaults()
       let meal = Meal()
       meal.date = selectedDate
       let newMealController = segue.destinationViewController as! NewMealTableViewController
@@ -116,12 +114,6 @@ extension DayOverviewController: UITableViewDataSource, UITableViewDelegate{
 }
 
 extension DayOverviewController{
-  
-  func clearNSUserDefaults(){
-    for key in Array(NSUserDefaults.standardUserDefaults().dictionaryRepresentation().keys) {
-      NSUserDefaults.standardUserDefaults().removeObjectForKey(key)
-    }
-  }
   
   func getMealsFromDay(selectedDate: NSDate, completionBlock : () -> Void ) {
     let dayStart = NSCalendar.currentCalendar().startOfDayForDate(selectedDate)

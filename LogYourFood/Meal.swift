@@ -9,6 +9,7 @@
 import RealmSwift
 
 enum DishType: Int{
+  case None = -1
   case Breakfast = 0
   case Brunch
   case Elevenses
@@ -19,7 +20,7 @@ enum DishType: Int{
   case Snack
   
   
-  static let dishNames: [DishType: String] = [ Breakfast : "Breakfast", Brunch : "Brunch", Elevenses : "Elevenses", Lunch : "Lunch",
+  static let dishNames: [DishType: String] = [ None: "None", Breakfast : "Breakfast", Brunch : "Brunch", Elevenses : "Elevenses", Lunch : "Lunch",
     Tea : "Tea", Dinner : "Dinner", Supper : "Supper", Snack : "Snack"]
   
   func getDescription() -> String{
@@ -33,7 +34,7 @@ enum DishType: Int{
 
 class Meal : Object, Clonable{
   dynamic var date: NSDate = NSDate()
-  dynamic var dishType = DishType.Breakfast.rawValue
+  dynamic var dishType = DishType.None.rawValue
   dynamic var id: String = ""
   
   override static func primaryKey() -> String? {
