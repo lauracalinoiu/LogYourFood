@@ -18,16 +18,15 @@ enum DishType: Int{
   case Supper
   case Snack
   
-  var description: String{
-    switch self{
-    case Breakfast: return "Breakfast"
-    case Brunch: return "Brunch"
-    case Elevenses: return "Elevenses"
-    case Lunch: return "Lunch"
-    case Tea: return "Tea"
-    case Dinner: return "Dinner"
-    case Supper: return "Supper"
-    case Snack: return "Snack"
+  
+  static let dishNames: [DishType: String] = [ Breakfast : "Breakfast", Brunch : "Brunch", Elevenses : "Elevenses", Lunch : "Lunch",
+    Tea : "Tea", Dinner : "Dinner", Supper : "Supper", Snack : "Snack"]
+  
+  func getDescription() -> String{
+    if let name = DishType.dishNames[self]{
+      return name
+    } else {
+      return "None"
     }
   }
 }

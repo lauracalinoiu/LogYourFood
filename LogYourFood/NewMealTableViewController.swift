@@ -46,7 +46,7 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
   
   func updateTypeOfMealWith(data: Int) {
     meal.dishTypeEnum = DishType(rawValue: data)!
-    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.detailTextLabel!.text = meal.dishTypeEnum.description
+    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.detailTextLabel!.text = meal.dishTypeEnum.getDescription()
   }
   
   func updateSelectedReaction(updatedMeal: Meal, category: Category) {
