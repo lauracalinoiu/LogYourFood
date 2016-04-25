@@ -36,8 +36,6 @@ class DayOverviewController: UIViewController{
   override func viewDidLoad() {
     super.viewDidLoad()
     datePicker.addTarget(self, action: #selector(DayOverviewController.datePickerChanged(_:)), forControlEvents: .ValueChanged)
-    mealTable.dataSource = self
-    mealTable.delegate = self
     datePicker.hidden = true
   }
   
@@ -85,7 +83,7 @@ extension DayOverviewController: UITableViewDataSource, UITableViewDelegate{
   
   func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCellWithIdentifier("mealCell", forIndexPath: indexPath) as! MealOverviewCell
-    cell.typeOfMealLabel.text = meals[indexPath.row].dishType
+    cell.typeOfMealLabel.text = meals[indexPath.row].dishTypeEnum.description
     cell.foodItemsLabel.text = meals[indexPath.row].foodItems
     cell.feedbackLabel.text = EmonjiCalculator.getEmonji(Array(meals[indexPath.row].reactions))
     return cell

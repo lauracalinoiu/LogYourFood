@@ -8,8 +8,8 @@
 
 import RealmSwift
 
-enum DishType: String{
-  case Breakfast
+enum DishType: Int{
+  case Breakfast = 0
   case Brunch
   case Elevenses
   case Lunch
@@ -17,6 +17,19 @@ enum DishType: String{
   case Dinner
   case Supper
   case Snack
+  
+  var description: String{
+    switch self{
+    case Breakfast: return "Breakfast"
+    case Brunch: return "Brunch"
+    case Elevenses: return "Elevenses"
+    case Lunch: return "Lunch"
+    case Tea: return "Tea"
+    case Dinner: return "Dinner"
+    case Supper: return "Supper"
+    case Snack: return "Snack"
+    }
+  }
 }
 
 class Meal : Object, Clonable{

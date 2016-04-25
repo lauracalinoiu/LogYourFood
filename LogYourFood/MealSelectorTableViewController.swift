@@ -10,28 +10,13 @@ import UIKit
 
 class MealSelectorTableViewController: UITableViewController {
   
-  var checkedIndex: Int? {
-    get {
-      guard let index = NSUserDefaults.standardUserDefaults().objectForKey("checkedIndex") else{
-        return nil
-      }
-      return Int(index as! NSNumber)
-    }
-    set {
-      NSUserDefaults.standardUserDefaults().setObject(newValue, forKey: "checkedIndex")
-      NSUserDefaults.standardUserDefaults().synchronize()
-    }
-  }
-  
+  var meal: Meal!
   var checkedIndexPath: NSIndexPath? {
     get{
-      if let checkedIndexUnwrapped = checkedIndex{
-        return NSIndexPath(forRow: checkedIndexUnwrapped, inSection: 0)
-      }
-      return nil
+      return NSIndexPath(forRow: meal.dishTypeEnum.hashValue, inSection: 0)
     }
     set(v){
-      checkedIndex = v?.row
+      
     }
   }
   
@@ -62,10 +47,7 @@ class MealSelectorTableViewController: UITableViewController {
   }
   
   func notifyDelegateAboutChange(indexPath: NSIndexPath){
-    let cell = tableView.cellForRowAtIndexPath(indexPath)
-    if let labelFromCell = cell?.textLabel{
-      delegate?.updateTypeOfMealWith(labelFromCell.text!)
-    }
+    delegate?.updateTypeOfMealWith(indexPath.row)
   }
   
   func dismissController(){
@@ -80,5 +62,5 @@ class MealSelectorTableViewController: UITableViewController {
 }
 
 protocol MealDelegate{
-  func updateTypeOfMealWith(data: String)
+  func updateTypeOfMealWith(data: Int)
 }

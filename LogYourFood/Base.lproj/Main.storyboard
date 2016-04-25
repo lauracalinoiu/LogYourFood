@@ -95,6 +95,10 @@
                                             </tableViewCell>
                                         </prototypes>
                                         <sections/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="iNA-4H-Eh4" id="uTU-mR-HBk"/>
+                                            <outlet property="delegate" destination="iNA-4H-Eh4" id="ebr-B7-0Ca"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <constraints>

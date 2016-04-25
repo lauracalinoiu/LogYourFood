@@ -35,6 +35,7 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     switch segue.destinationViewController {
     case let controller as MealSelectorTableViewController:
+      controller.meal = meal
       controller.delegate = self
     case let controller as ReactionTableViewController:
       controller.reactionDelegate = self
@@ -43,9 +44,9 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
     }
   }
   
-  func updateTypeOfMealWith(data: String) {
-    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.detailTextLabel!.text = data
-    self.meal.dishTypeEnum = DishType(rawValue: data)!
+  func updateTypeOfMealWith(data: Int) {
+    meal.dishTypeEnum = DishType(rawValue: data)!
+    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.detailTextLabel!.text = meal.dishTypeEnum.description
   }
   
   func updateSelectedReaction(updatedMeal: Meal, category: Category) {
