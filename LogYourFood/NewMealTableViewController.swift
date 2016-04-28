@@ -36,7 +36,6 @@ class NewMealTableViewController: UITableViewController, MealDelegate, UITextVie
   }
   
   override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-    print(indexPath.section)
     switch indexPath.section{
     case 1: return 120
     case 2:

@@ -214,15 +214,24 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="reactionCell" id="qze-LO-BLm">
                                         <rect key="frame" x="0.0" y="380" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="qze-LO-BLm" id="sI4-2C-DLA">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qze-LO-BLm" id="sI4-2C-DLA">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zXu-bG-Gcy">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="8"/>
+                                                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zXu-bG-Gcy">
+                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="150" id="9uB-07-j30"/>
+                                                        <constraint firstAttribute="height" constant="8" id="Sv2-Jo-zcc"/>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="8" id="hzL-Mt-4bx"/>
                                                     </constraints>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="9uB-07-j30"/>
+                                                            <exclude reference="Sv2-Jo-zcc"/>
+                                                            <exclude reference="hzL-Mt-4bx"/>
+                                                        </mask>
+                                                    </variation>
                                                     <connections>
                                                         <segue destination="2FD-ss-z4D" kind="embed" id="lXE-ZL-3J6"/>
                                                     </connections>
@@ -297,7 +306,7 @@
             <objects>
                 <tableViewController id="2FD-ss-z4D" customClass="ReactionsEmbededTableViewController" customModule="LogYourFood" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="GFH-2e-xNl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="8"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -368,7 +377,7 @@
             <objects>
                 <tableViewController id="gsb-NV-Dho" customClass="ApetitReactionsTableViewController" customModule="LogYourFood" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="ZQX-oG-tPG">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="8"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -406,7 +415,7 @@
             <objects>
                 <tableViewController id="fYo-Ga-yVi" customClass="EnergyReactionTableViewController" customModule="LogYourFood" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="DmT-D6-7GM">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="8"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
@@ -444,7 +453,7 @@
             <objects>
                 <tableViewController id="zJW-Aq-Gcd" customClass="EmotionReactionTableViewController" customModule="LogYourFood" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="bEr-Rn-m7l">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="8"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="51"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
