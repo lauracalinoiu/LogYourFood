@@ -40,9 +40,18 @@ class DayOverviewController: UIViewController{
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
+    
+    setupBarStyle()
     getMealsFromDay(selectedDate){
       self.mealTable.reloadData()
     }
+  }
+  
+  func setupBarStyle(){
+    let nav = self.navigationController?.navigationBar
+    nav?.barTintColor = UIColor(netHex: 0x249943)
+    nav?.tintColor = UIColor.whiteColor()
+    nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(netHex: 0xFFF1F2)]
   }
   
   @IBAction func todayClicked(sender: UIButton) {
@@ -83,7 +92,7 @@ extension DayOverviewController: UITableViewDataSource, UITableViewDelegate{
     let cell = tableView.dequeueReusableCellWithIdentifier("mealCell", forIndexPath: indexPath) as! MealOverviewCell
     cell.typeOfMealLabel.text = meals[indexPath.row].dishTypeEnum.getDescription()
     cell.foodItemsLabel.text = meals[indexPath.row].foodItems
-    cell.backgroundColor = EmonjiCalculator.getEmonji(Array(meals[indexPath.row].reactions))
+    cell.reactionColorLabel.backgroundColor = EmonjiCalculator.getEmonji(Array(meals[indexPath.row].reactions))
     return cell
   }
   

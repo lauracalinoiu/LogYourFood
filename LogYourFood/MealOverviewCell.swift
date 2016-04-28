@@ -9,7 +9,6 @@ import UIKit
 class MealOverviewCell: UITableViewCell {
   
   @IBOutlet weak var typeOfMealLabel: UILabel!
-  @IBOutlet weak var feedbackLabel: UILabel!
   @IBOutlet weak var foodItemsLabel: UILabel!
-  
+  @IBOutlet weak var reactionColorLabel: UILabel!
 }

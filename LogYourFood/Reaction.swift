@@ -12,6 +12,16 @@ enum Category: Int{
   case Apetit
   case Energy
   case Emotion
+  
+  static let categoryNames:[Category: String] = [Apetit: "Apetit", Energy: "Energy", Emotion: "Emotion"]
+  
+  func getDescription() -> String{
+    if let name = Category.categoryNames[self]{
+      return name
+    } else {
+      return "None"
+    }
+  }
 }
 
 enum Type: String{
@@ -67,9 +77,23 @@ class EmonjiCalculator{
     let negatives = reactions.filter{$0.typeEnum == .Negative}.count
     let difference = positives - negatives
     switch  difference{
-    case _ where difference > 0: return UIColor.greenColor()
-    case _ where difference < 0: return UIColor.orangeColor()
-    default: return UIColor.grayColor()
+    case _ where difference > 0: return  UIColor(netHex:0x249943)
+    case _ where difference < 0: return  UIColor(netHex:0xBB1117)
+    default: return  UIColor(netHex:0x6A7A6E)
     }
+  }
+}
+
+extension UIColor {
+  convenience init(red: Int, green: Int, blue: Int) {
+    assert(red >= 0 && red <= 255, "Invalid red component")
+    assert(green >= 0 && green <= 255, "Invalid green component")
+    assert(blue >= 0 && blue <= 255, "Invalid blue component")
+    
+    self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+  }
+  
+  convenience init(netHex:Int) {
+    self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
   }
 }

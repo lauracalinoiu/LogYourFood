@@ -14,31 +14,46 @@ enum TypeOfController{
   case InserterController
 }
 
-class NewMealTableViewController: UITableViewController, MealDelegate, ReactionDelegate, UITextViewDelegate{
+class NewMealTableViewController: UITableViewController, MealDelegate, UITextViewDelegate{
   
+  var kindOfController: TypeOfController!
   let realm = try! Realm()
   var meal: Meal!
   @IBOutlet weak var foodItemsTextView: UITextView!
-  var kindOfController: TypeOfController!
+  @IBOutlet weak var controllersHeight: NSLayoutConstraint!
+  
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(NewMealTableViewController.saveMeal(_:)))
+    foodItemsTextView.delegate = self
+    tableView.estimatedRowHeight = 44
+  }
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
     populateUIWithValuesFromRealm()
   }
   
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: #selector(NewMealTableViewController.saveMeal(_:)))
-    foodItemsTextView.delegate = self
+  override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    print(indexPath.section)
+    switch indexPath.section{
+    case 1: return 120
+    case 2:
+      if let reactionsEmbeded = childViewControllers.first as?ReactionsEmbededTableViewController{
+        return reactionsEmbeded.getTableViewHeight()
+      }
+      return UITableViewAutomaticDimension
+    default:
+      return UITableViewAutomaticDimension
+    }
   }
-  
   override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
     switch segue.destinationViewController {
     case let controller as MealSelectorTableViewController:
       controller.meal = meal
       controller.delegate = self
-    case let controller as ReactionTableViewController:
-      controller.reactionDelegate = self
+    case let controller as ReactionsEmbededTableViewController:
       controller.meal = meal
     default: break
     }
@@ -47,16 +62,6 @@ class NewMealTableViewController: UITableViewController, MealDelegate, ReactionD
   func updateTypeOfMealWith(data: Int) {
     meal.dishTypeEnum = DishType(rawValue: data)!
     tableView.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0))?.detailTextLabel!.text = meal.dishTypeEnum.getDescription()
-  }
-  
-  func updateSelectedReaction(updatedMeal: Meal, category: Category) {
-    meal = updatedMeal
-    let reactions = meal.reactions.filter { $0.category == category.rawValue }
-    if reactions.count > 0{
-    tableView.cellForRowAtIndexPath(NSIndexPath(forRow: category.rawValue, inSection: 2))?.backgroundColor = EmonjiCalculator.getEmonji(reactions)
-    } else {
-      tableView.cellForRowAtIndexPath(NSIndexPath(forRow: category.rawValue, inSection: 2))?.detailTextLabel!.text = "Choose"
-    }
   }
   
   func saveMeal(saveButton: UIBarButtonItem){
@@ -82,9 +87,6 @@ extension NewMealTableViewController{
   
   func populateUIWithValuesFromRealm(){
     foodItemsTextView.text = meal.foodItems
-    updateSelectedReaction(meal, category: .Apetit)
-    updateSelectedReaction(meal, category: .Energy)
-    updateSelectedReaction(meal, category: .Emotion)
     updateTypeOfMealWith(meal.dishType)
   }
   
