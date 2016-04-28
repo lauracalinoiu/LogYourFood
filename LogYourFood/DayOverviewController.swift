@@ -40,18 +40,9 @@ class DayOverviewController: UIViewController{
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    
-    setupBarStyle()
     getMealsFromDay(selectedDate){
       self.mealTable.reloadData()
     }
-  }
-  
-  func setupBarStyle(){
-    let nav = self.navigationController?.navigationBar
-    nav?.barTintColor = UIColor(netHex: 0x249943)
-    nav?.tintColor = UIColor.whiteColor()
-    nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(netHex: 0xFFF1F2)]
   }
   
   @IBAction func todayClicked(sender: UIButton) {

@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+    setupBarStyle()
     return true
   }
 
@@ -41,6 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
 
+  
+  func setupBarStyle(){
+    let nav = UINavigationBar.appearance()
+    nav.barTintColor = UIColor(netHex: 0x249943)
+    nav.tintColor = UIColor.whiteColor()
+    nav.titleTextAttributes = [NSForegroundColorAttributeName: UIColor(netHex: 0xFFF1F2)]
+    UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+  }
 
 }
 

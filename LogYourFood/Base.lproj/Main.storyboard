@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bUN-pc-nr2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ypa-Ks-IsB">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -141,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EYG-0h-TST" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2357" y="337"/>
+            <point key="canvasLocation" x="3169" y="337"/>
         </scene>
         <!--New Meal Table View Controller-->
         <scene sceneID="Sgz-N0-WaP">
@@ -261,7 +261,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="coJ-tt-C5V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3117" y="337"/>
+            <point key="canvasLocation" x="3929" y="337"/>
         </scene>
         <!--Meal Selector Table View Controller-->
         <scene sceneID="d0K-iF-Wft">
@@ -299,7 +299,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gJE-an-Wlo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3842" y="337"/>
+            <point key="canvasLocation" x="4654" y="337"/>
         </scene>
         <!--Reactions Embeded Table View Controller-->
         <scene sceneID="QX0-7h-DGa">
@@ -370,7 +370,51 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e9c-Hf-xXo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3117" y="899"/>
+            <point key="canvasLocation" x="3929" y="898.5"/>
+        </scene>
+        <!--Food Logger-->
+        <scene sceneID="aQe-lZ-vpy">
+            <objects>
+                <viewController id="2uh-dK-oeA" customClass="CoachViewController" customModule="LogYourFood" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yeo-Sw-0oV"/>
+                        <viewControllerLayoutGuide type="bottom" id="ect-M2-2Nf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zf0-BK-tQU">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email of your coach" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GC0-MD-BoG">
+                                <rect key="frame" x="6" y="72" width="541" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfN-l9-949">
+                                <rect key="frame" x="555" y="71" width="36" height="30"/>
+                                <state key="normal" title="Send"/>
+                                <connections>
+                                    <action selector="sendEmail:" destination="2uh-dK-oeA" eventType="touchUpInside" id="dPq-b4-F4b"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="rfN-l9-949" secondAttribute="trailing" constant="-11" id="2EU-rD-k1r"/>
+                            <constraint firstItem="GC0-MD-BoG" firstAttribute="leading" secondItem="zf0-BK-tQU" secondAttribute="leadingMargin" constant="-14" id="67v-AA-oI9"/>
+                            <constraint firstItem="rfN-l9-949" firstAttribute="top" secondItem="yeo-Sw-0oV" secondAttribute="bottom" constant="7" id="8Dg-im-bXN"/>
+                            <constraint firstItem="rfN-l9-949" firstAttribute="leading" secondItem="GC0-MD-BoG" secondAttribute="trailing" constant="8" id="AJv-Sk-n64"/>
+                            <constraint firstItem="GC0-MD-BoG" firstAttribute="top" secondItem="yeo-Sw-0oV" secondAttribute="bottom" constant="8" id="m6y-Ae-1th"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Food Logger" id="R5N-46-0Lb"/>
+                    <connections>
+                        <outlet property="coachEmailTextField" destination="GC0-MD-BoG" id="VQk-cP-VpI"/>
+                        <outlet property="sendButton" destination="rfN-l9-949" id="CWW-dw-hgI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HUX-6l-L3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2357" y="1251"/>
         </scene>
         <!--Apetit Reactions Table View Controller-->
         <scene sceneID="3Il-hJ-3YC">
@@ -408,7 +452,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nPh-Ih-KuN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2357" y="1418"/>
+            <point key="canvasLocation" x="3169" y="1417.5"/>
         </scene>
         <!--Energy Reaction Table View Controller-->
         <scene sceneID="21q-mt-liz">
@@ -446,7 +490,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Qf-rA-Ztt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3117" y="1418"/>
+            <point key="canvasLocation" x="3929" y="1417.5"/>
         </scene>
         <!--Emotion Reaction Table View Controller-->
         <scene sceneID="O8J-Jn-gnb">
@@ -484,12 +528,13 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pQm-eF-XYb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3910" y="1418"/>
+            <point key="canvasLocation" x="4722" y="1417.5"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Log-->
         <scene sceneID="bU3-Kg-4w1">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bUN-pc-nr2" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Log" image="log" id="EL5-cm-HYs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8S3-0m-qIy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -502,9 +547,50 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vbI-gy-3iS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="2357" y="337"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="heh-iF-pYf">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Ypa-Ks-IsB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="hxD-Il-1wa">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="bUN-pc-nr2" kind="relationship" relationship="viewControllers" id="HJr-l2-CRB"/>
+                        <segue destination="BOO-HW-FXw" kind="relationship" relationship="viewControllers" id="M7U-Bt-oB4"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LbA-4N-AQD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="1545" y="337"/>
         </scene>
+        <!--Send to coach-->
+        <scene sceneID="66w-qP-0N2">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="BOO-HW-FXw" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Send to coach" image="send" id="RBp-vL-V3W"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sVi-4d-zaI">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2uh-dK-oeA" kind="relationship" relationship="rootViewController" id="gJe-DA-1ZR"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nCW-i0-os1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1545" y="1251"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="log" width="25" height="25"/>
+        <image name="send" width="25" height="25"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="4C2-Xc-Lki"/>
     </inferredMetricsTieBreakers>

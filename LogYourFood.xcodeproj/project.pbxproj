@@ -22,6 +22,7 @@
 		D36D2B131CBF7FE2001530DE /* MealOverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36D2B121CBF7FE2001530DE /* MealOverviewCell.swift */; };
 		D3797DB51CCF69B000F936F5 /* ReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3797DB41CCF69B000F936F5 /* ReactionCell.swift */; };
 		D3797DB71CCFBC4800F936F5 /* ReactionsEmbededTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3797DB61CCFBC4800F936F5 /* ReactionsEmbededTableViewController.swift */; };
+		D3797DB91CD24A9300F936F5 /* CoachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3797DB81CD24A9200F936F5 /* CoachViewController.swift */; };
 		D38E87AD1CA375BB0048A83E /* MealSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */; };
 		D38E87AF1CA3AB480048A83E /* NewMealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E87AE1CA3AB480048A83E /* NewMealTableViewController.swift */; };
 		D3ACF3991CA91762003533D8 /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ACF3981CA91762003533D8 /* Reaction.swift */; };
@@ -47,6 +48,7 @@
 		D36D2B121CBF7FE2001530DE /* MealOverviewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealOverviewCell.swift; sourceTree = "<group>"; };
 		D3797DB41CCF69B000F936F5 /* ReactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionCell.swift; sourceTree = "<group>"; };
 		D3797DB61CCFBC4800F936F5 /* ReactionsEmbededTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionsEmbededTableViewController.swift; sourceTree = "<group>"; };
+		D3797DB81CD24A9200F936F5 /* CoachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachViewController.swift; sourceTree = "<group>"; };
 		D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealSelectorTableViewController.swift; sourceTree = "<group>"; };
 		D38E87AE1CA3AB480048A83E /* NewMealTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMealTableViewController.swift; sourceTree = "<group>"; };
 		D3ACF3981CA91762003533D8 /* Reaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				D3797DB61CCFBC4800F936F5 /* ReactionsEmbededTableViewController.swift */,
 				D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */,
 				D3797DB41CCF69B000F936F5 /* ReactionCell.swift */,
+				D3797DB81CD24A9200F936F5 /* CoachViewController.swift */,
 				D348DEB21C97E98A000D632C /* Main.storyboard */,
 				D348DEB51C97E98A000D632C /* Assets.xcassets */,
 				D348DEB71C97E98A000D632C /* LaunchScreen.storyboard */,
@@ -271,6 +274,7 @@
 				D348DEAF1C97E98A000D632C /* AppDelegate.swift in Sources */,
 				D36D2B131CBF7FE2001530DE /* MealOverviewCell.swift in Sources */,
 				D3797DB51CCF69B000F936F5 /* ReactionCell.swift in Sources */,
+				D3797DB91CD24A9300F936F5 /* CoachViewController.swift in Sources */,
 				D331E04F1CC8C89A001EF459 /* DayOverviewController.swift in Sources */,
 				D31162D11CABB9C4000A5241 /* EmotionReactionTableViewController.swift in Sources */,
 				D38E87AF1CA3AB480048A83E /* NewMealTableViewController.swift in Sources */,
