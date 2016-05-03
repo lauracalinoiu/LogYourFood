@@ -11,6 +11,8 @@
 		D31162CC1CAAAFCD000A5241 /* ReactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31162CB1CAAAFCD000A5241 /* ReactionTableViewController.swift */; };
 		D31162CE1CAAB1EF000A5241 /* EnergyReactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31162CD1CAAB1EF000A5241 /* EnergyReactionTableViewController.swift */; };
 		D31162D11CABB9C4000A5241 /* EmotionReactionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31162D01CABB9C3000A5241 /* EmotionReactionTableViewController.swift */; };
+		D3298DE11CD38B6900F0AB18 /* ComposeMailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3298DE01CD38B6900F0AB18 /* ComposeMailViewController.swift */; };
+		D3298DE71CD39F5D00F0AB18 /* FSCalendar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D3298DE61CD39F5D00F0AB18 /* FSCalendar.framework */; };
 		D32EDA0B1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32EDA0A1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift */; };
 		D331E04F1CC8C89A001EF459 /* DayOverviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D331E04E1CC8C89A001EF459 /* DayOverviewController.swift */; };
 		D348DEAF1C97E98A000D632C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D348DEAE1C97E98A000D632C /* AppDelegate.swift */; };
@@ -23,6 +25,7 @@
 		D3797DB51CCF69B000F936F5 /* ReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3797DB41CCF69B000F936F5 /* ReactionCell.swift */; };
 		D3797DB71CCFBC4800F936F5 /* ReactionsEmbededTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3797DB61CCFBC4800F936F5 /* ReactionsEmbededTableViewController.swift */; };
 		D3797DB91CD24A9300F936F5 /* CoachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3797DB81CD24A9200F936F5 /* CoachViewController.swift */; };
+		D3797DBB1CD2684900F936F5 /* RealmAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3797DBA1CD2684900F936F5 /* RealmAPI.swift */; };
 		D38E87AD1CA375BB0048A83E /* MealSelectorTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */; };
 		D38E87AF1CA3AB480048A83E /* NewMealTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38E87AE1CA3AB480048A83E /* NewMealTableViewController.swift */; };
 		D3ACF3991CA91762003533D8 /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3ACF3981CA91762003533D8 /* Reaction.swift */; };
@@ -35,6 +38,10 @@
 		D31162CB1CAAAFCD000A5241 /* ReactionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionTableViewController.swift; sourceTree = "<group>"; };
 		D31162CD1CAAB1EF000A5241 /* EnergyReactionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnergyReactionTableViewController.swift; sourceTree = "<group>"; };
 		D31162D01CABB9C3000A5241 /* EmotionReactionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmotionReactionTableViewController.swift; sourceTree = "<group>"; };
+		D3298DE01CD38B6900F0AB18 /* ComposeMailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeMailViewController.swift; sourceTree = "<group>"; };
+		D3298DE21CD38ED800F0AB18 /* PDTSimpleCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PDTSimpleCalendar.framework; path = "Pods/../build/Debug-iphoneos/PDTSimpleCalendar.framework"; sourceTree = "<group>"; };
+		D3298DE41CD39B9A00F0AB18 /* FSCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FSCalendar.framework; path = "Pods/../build/Debug-iphoneos/FSCalendar.framework"; sourceTree = "<group>"; };
+		D3298DE61CD39F5D00F0AB18 /* FSCalendar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FSCalendar.framework; path = "../../../Library/Developer/Xcode/DerivedData/LogYourFood-fuubwqcckgoopzbfdlpmgqlejggj/Build/Products/Debug-iphonesimulator/FSCalendar.framework"; sourceTree = "<group>"; };
 		D32EDA0A1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApetitReactionsTableViewController.swift; sourceTree = "<group>"; };
 		D331E04E1CC8C89A001EF459 /* DayOverviewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayOverviewController.swift; sourceTree = "<group>"; };
 		D348DEAB1C97E98A000D632C /* LogYourFood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LogYourFood.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -49,6 +56,7 @@
 		D3797DB41CCF69B000F936F5 /* ReactionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionCell.swift; sourceTree = "<group>"; };
 		D3797DB61CCFBC4800F936F5 /* ReactionsEmbededTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionsEmbededTableViewController.swift; sourceTree = "<group>"; };
 		D3797DB81CD24A9200F936F5 /* CoachViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoachViewController.swift; sourceTree = "<group>"; };
+		D3797DBA1CD2684900F936F5 /* RealmAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmAPI.swift; sourceTree = "<group>"; };
 		D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealSelectorTableViewController.swift; sourceTree = "<group>"; };
 		D38E87AE1CA3AB480048A83E /* NewMealTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMealTableViewController.swift; sourceTree = "<group>"; };
 		D3ACF3981CA91762003533D8 /* Reaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
@@ -59,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3298DE71CD39F5D00F0AB18 /* FSCalendar.framework in Frameworks */,
 				D36852C31CABD13E00820B2F /* RealmSwift.framework in Frameworks */,
 				2B4002BD4D3D75BB83DE9ED9 /* Pods_LogYourFood.framework in Frameworks */,
 			);
@@ -70,6 +79,9 @@
 		1783A1A8D23C88E12CE0DD4A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D3298DE61CD39F5D00F0AB18 /* FSCalendar.framework */,
+				D3298DE41CD39B9A00F0AB18 /* FSCalendar.framework */,
+				D3298DE21CD38ED800F0AB18 /* PDTSimpleCalendar.framework */,
 				D36852C21CABD13E00820B2F /* RealmSwift.framework */,
 				3B1F646616F0C85B9693F321 /* Pods_LogYourFood.framework */,
 			);
@@ -127,6 +139,7 @@
 				D38E87AC1CA375BB0048A83E /* MealSelectorTableViewController.swift */,
 				D3797DB41CCF69B000F936F5 /* ReactionCell.swift */,
 				D3797DB81CD24A9200F936F5 /* CoachViewController.swift */,
+				D3298DE01CD38B6900F0AB18 /* ComposeMailViewController.swift */,
 				D348DEB21C97E98A000D632C /* Main.storyboard */,
 				D348DEB51C97E98A000D632C /* Assets.xcassets */,
 				D348DEB71C97E98A000D632C /* LaunchScreen.storyboard */,
@@ -140,6 +153,7 @@
 			children = (
 				D36852C01CABD05200820B2F /* Meal.swift */,
 				D3ACF3981CA91762003533D8 /* Reaction.swift */,
+				D3797DBA1CD2684900F936F5 /* RealmAPI.swift */,
 			);
 			name = "Realm Models";
 			sourceTree = "<group>";
@@ -269,6 +283,7 @@
 			files = (
 				D36852C11CABD05200820B2F /* Meal.swift in Sources */,
 				D31162CE1CAAB1EF000A5241 /* EnergyReactionTableViewController.swift in Sources */,
+				D3298DE11CD38B6900F0AB18 /* ComposeMailViewController.swift in Sources */,
 				D32EDA0B1CA53A9300BC5F4C /* ApetitReactionsTableViewController.swift in Sources */,
 				D31162CC1CAAAFCD000A5241 /* ReactionTableViewController.swift in Sources */,
 				D348DEAF1C97E98A000D632C /* AppDelegate.swift in Sources */,
@@ -281,6 +296,7 @@
 				D3ACF3991CA91762003533D8 /* Reaction.swift in Sources */,
 				D38E87AD1CA375BB0048A83E /* MealSelectorTableViewController.swift in Sources */,
 				D3797DB71CCFBC4800F936F5 /* ReactionsEmbededTableViewController.swift in Sources */,
+				D3797DBB1CD2684900F936F5 /* RealmAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

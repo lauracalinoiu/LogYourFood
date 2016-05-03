@@ -15,16 +15,8 @@ class DayOverviewController: UIViewController{
   @IBOutlet weak var todayButton: UIButton!
   @IBOutlet weak var mealTable: UITableView!
   
-  let realm = try! Realm()
   var meals: Results<Meal>!
   var selectedMeal: Meal?
-  
-  let dateFormatter: NSDateFormatter = {
-    let formatter = NSDateFormatter()
-    formatter.dateStyle = .LongStyle
-    formatter.timeStyle = .NoStyle
-    return formatter
-  }()
   
   var selectedDate: NSDate{
     get{
@@ -40,7 +32,8 @@ class DayOverviewController: UIViewController{
   
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
-    getMealsFromDay(selectedDate){
+    RealmAPI.sharedInstance.getMealsFromDay(selectedDate){ meals in
+      self.meals = meals
       self.mealTable.reloadData()
     }
   }
@@ -50,9 +43,10 @@ class DayOverviewController: UIViewController{
   }
   
   func datePickerChanged(datePicker:UIDatePicker) {
-    let strDate = dateFormatter.stringFromDate(datePicker.date)
+    let strDate = datePicker.date.foodLoggerDateFormatter()
     todayButton.setTitle(strDate, forState: .Normal)
-    getMealsFromDay(selectedDate){
+    RealmAPI.sharedInstance.getMealsFromDay(selectedDate){ meals in
+      self.meals = meals
       self.mealTable.reloadData()
     }
   }
@@ -102,7 +96,7 @@ extension DayOverviewController: UITableViewDataSource, UITableViewDelegate{
   func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
   {
     if editingStyle == .Delete {
-      deleteMeal(meals[indexPath.row])
+      RealmAPI.sharedInstance.deleteMeal(meals[indexPath.row])
       tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
     }
   }
@@ -110,28 +104,6 @@ extension DayOverviewController: UITableViewDataSource, UITableViewDelegate{
   func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
     selectedMeal = meals[indexPath.row]
     performSegueWithIdentifier("EditMeal", sender: self)
-  }
-}
-
-extension DayOverviewController{
-  
-  func getMealsFromDay(selectedDate: NSDate, completionBlock : () -> Void ) {
-    let dayStart = NSCalendar.currentCalendar().startOfDayForDate(selectedDate)
-    let dayEnd: NSDate = {
-      let components = NSDateComponents()
-      components.day = 1
-      components.second = -1
-      return NSCalendar.currentCalendar().dateByAddingComponents(components, toDate: dayStart, options: NSCalendarOptions())!
-    }()
-    self.meals = realm.objects(Meal).filter("date BETWEEN %@", [dayStart, dayEnd])
-    completionBlock()
-  }
-  
-  func deleteMeal(meal: Meal){
-    realm.beginWrite()
-    realm.delete(meal.reactions)
-    realm.delete(meal)
-    try! realm.commitWrite()
   }
 }
 
@@ -149,4 +121,17 @@ extension UIView {
   }
 }
 
+extension NSDateFormatter {
+  private static let foodDateFormatter: NSDateFormatter = {
+    let formatter = NSDateFormatter()
+    formatter.dateStyle = .LongStyle
+    formatter.timeStyle = .NoStyle
+    return formatter
+  }()
+}
 
+extension NSDate {
+  func foodLoggerDateFormatter() -> String{
+    return NSDateFormatter.foodDateFormatter.stringFromDate(self)
+  }
+}

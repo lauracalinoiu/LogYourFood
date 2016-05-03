@@ -65,20 +65,18 @@ class NewMealTableViewController: UITableViewController, MealDelegate, UITextVie
   
   func saveMeal(saveButton: UIBarButtonItem){
     if kindOfController == .InserterController {
-      insertNewMeal(){
+      RealmAPI.sharedInstance.insertNewMeal(meal){
         self.navigationController?.popViewControllerAnimated(true)
       }
     } else {
-      updateMeal(){
+      RealmAPI.sharedInstance.updateMeal(meal){
         self.navigationController?.popViewControllerAnimated(true)
       }
     }
   }
   
   func textViewDidEndEditing(textView: UITextView) {
-    try! realm.write{
-      meal.foodItems = textView.text
-    }
+    RealmAPI.sharedInstance.updateFoodItemsWith(meal, data: textView.text)
   }
 }
 
@@ -87,20 +85,5 @@ extension NewMealTableViewController{
   func populateUIWithValuesFromRealm(){
     foodItemsTextView.text = meal.foodItems
     updateTypeOfMealWith(meal.dishType)
-  }
-  
-  func insertNewMeal(completionBlock: () -> ()){
-    try! realm.write{
-      meal.id = NSUUID().UUIDString
-      realm.add(meal)
-    }
-    completionBlock()
-  }
-  
-  func updateMeal(completionBlock: () -> ()){
-    try! realm.write{
-      realm.add(meal, update: true)
-    }
-    completionBlock()
   }
 }

@@ -5,5 +5,7 @@ use_frameworks!
 
 target 'LogYourFood' do
 	 pod 'RealmSwift' 
+	 pod 'FSCalendar'
 end
+
 
